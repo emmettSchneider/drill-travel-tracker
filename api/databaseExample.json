@@ -1,0 +1,115 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "sfcbob.mil@mail.mil",
+      "password": "bob",
+      "component": "ARNG",
+      "userRank": "SFC",
+      "defaultZipCode": 26505,
+      "defaultMiles": 119
+    },
+    {
+      "id": 2,
+      "email": "airperson@gmail.com",
+      "password": "password",
+      "component": "ANG",
+      "userRank": "TSgt",
+      "defaultZipCode": 45324,
+      "defaultMiles": 372
+    },
+    {
+      "id": 3,
+      "email": "devildog@hotmail.com",
+      "password": "semperfi",
+      "component": "USMCR",
+      "userRank": "GySgt",
+      "defaultZipCode": 37167,
+      "defaultMiles": 239
+    }
+  ],
+  "trips": [
+    {
+      "id": 1,
+      "userId": 1,
+      "tripYear": 2019,
+      "tripStart": "2019-01-05",
+      "tripEnd": "2019-01-06",
+      "zipCode": 26505,
+      "tripMiles": 119,
+      "localMiles": 0,
+      "airfare": 0,
+      "rentalCar": 0,
+      "mealCost": 0,
+      "roomCost": 0,
+      "roomTax": 0,
+      "otherCost": 0
+    },
+    {
+      "id": 2,
+      "userId": 3,
+      "tripYear": 2019,
+      "tripStart": "2019-02-02",
+      "tripEnd": "2019-02-03",
+      "zipCode": 37167,
+      "tripMiles": 239,
+      "localMiles": 0,
+      "airfare": 0,
+      "rentalCar": 0,
+      "mealCost": 0,
+      "roomCost": 0,
+      "roomTax": 0,
+      "otherCost": 0
+    }
+  ],
+  "mealRates": [
+    {
+      "id": 201955,
+      "breakfast": 13,
+      "lunch": 14,
+      "dinner": 23,
+      "incidental": 5,
+      "travelDay": 41.25
+    },
+    {
+      "id": 201956,
+      "breakfast": 13,
+      "lunch": 15,
+      "dinner": 23,
+      "incidental": 5,
+      "travelDay": 42
+    },
+    {
+      "id": 201961,
+      "breakfast": 14,
+      "lunch": 17,
+      "dinner": 28,
+      "incidental": 5,
+      "travelDay": 45.75
+    },
+    {
+      "id": 201966,
+      "breakfast": 16,
+      "lunch": 17,
+      "dinner": 28,
+      "incidental": 5,
+      "travelDay": 49.50
+    },
+    {
+      "id": 201971,
+      "breakfast": 17,
+      "lunch": 18,
+      "dinner": 31,
+      "incidental": 5,
+      "travelDay": 53.25
+    },
+    {
+      "id": 201976,
+      "breakfast": 18,
+      "lunch": 19,
+      "dinner": 34,
+      "incidental": 5,
+      "travelDay": 57
+    }
+  ]
+}

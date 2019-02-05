@@ -9,16 +9,22 @@ class NavBar extends Component {
             <nav className="navbar navbar-light light-blue flex-md-nowrap p-0 shadow">
                 <ul className="nav nav-pills nav-fill">
                     <li className="nav-item">
-                        <Link className="nav-link" to="/">News</Link>
+                        <Link className="nav-link" to="/">Dashboard</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/friends">Friends</Link>
+                        <Link className="nav-link" to="/add_trip">Add New Trip</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/messages">Messages</Link>
+                        <Link className="nav-link" to="/edit_trip">Edit Previous Trip</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/tasks">Tasks</Link>
+                        <Link className="nav-link" to="/summary">View Trip Expense Summary</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/about">About</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/faq">FAQ</Link>
                     </li>
                 </ul>
             </nav>

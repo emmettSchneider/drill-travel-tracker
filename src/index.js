@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router } from "react-router-dom"
-import Nutshell from './components/Nutshell'
+import Dtt from './components/Dtt'
 import './index.css'
 
 ReactDOM.render(
   <Router>
-      <Nutshell />
+      <Dtt />
   </Router>
   , document.getElementById('root'))
