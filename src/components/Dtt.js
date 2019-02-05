@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import NavBar from "./nav/NavBar";
 import ApplicationViews from "./ApplicationViews";
-import "./Nutshell.css";
+import "./Dtt.css";
+import DataManager from "../dataManager/DataManager";
 
-class Nutshell extends Component {
+class Dtt extends Component {
   render() {
     return (
       <React.Fragment>
@@ -14,4 +15,6 @@ class Nutshell extends Component {
   }
 }
 
-export default Nutshell;
+DataManager.getRates();
+
+export default Dtt;
