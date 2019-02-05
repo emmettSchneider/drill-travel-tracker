@@ -1,5 +1,6 @@
 import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
+import LoginForm from "./login/Login"
 
 export default class ApplicationViews extends Component {
 
@@ -13,6 +14,10 @@ export default class ApplicationViews extends Component {
             // Remove null and return the component which will show news articles
           }}
         />
+
+        <Route path="/login" render={(props) => {
+          return <LoginForm />
+        }} />
 
         <Route
           path="/add_trip" render={props => {
