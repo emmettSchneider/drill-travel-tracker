@@ -1,6 +1,6 @@
 import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
-import LoginForm from "./login/Login"
+import Login from "./login/Login"
 
 export default class ApplicationViews extends Component {
 
@@ -16,7 +16,7 @@ export default class ApplicationViews extends Component {
         />
 
         <Route path="/login" render={(props) => {
-          return <LoginForm />
+          return <Login />
         }} />
 
         <Route
