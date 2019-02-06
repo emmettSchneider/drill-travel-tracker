@@ -2,12 +2,13 @@
 import React, { Component } from "react";
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import jeep from "./jeep-placeholder.png"
+import DataManager from "../../modules/DataManager"
 
 class Login extends Component {
 
   state = {
     email: "",
-    password: ""
+    password: "",
   }
 
   handleFieldChange = (e) => {
@@ -16,31 +17,51 @@ class Login extends Component {
     this.setState(stateToChange)
   }
 
-  handleLogin = (e) => {
-    e.preventDefault()
 
-    sessionStorage.setItem(
-      'email',
-      this.state.email)
-
-    let currentUser = sessionStorage.getItem('email')
-    let authenticated = this.props.users.find(user => user.email === currentUser)
-
-    console.log(authenticated.id)
-
-    sessionStorage.setItem(
-      'userId',
-      authenticated.id
-    )
-
-    if (authenticated === undefined) {
-      alert("Your email address doesn't appear to be in our system. Please enter a valid email address or sign up below.")
-      window.location.reload()
-    } else {
-      this.props.updateComponent()
-      this.props.history.push('/')
+  handleLogin = () => {
+    console.log(this.state.email)
+    console.log(this.state.password)
+    DataManager.getAllUsers()
+      .then(allUsers => {
+        let usersProcessed = 1
+        allUsers.forEach(user => {
+          if (this.state.email === user.email && this.state.password === user.password) {
+            console.log(`${user.email} with user ID ${user.id} is the current user`)
+            sessionStorage.setItem('userId', user.id)
+          } else if (usersProcessed === allUsers.length) {
+            alert("The email and password you entered does not match the information we have on file. If you're a new user, please register an account.")
+          } else {
+            usersProcessed++
+          }
+        })
+      })
     }
-  }
+
+    //   e.preventDefault()
+
+    //   sessionStorage.setItem(
+    //     'email',
+    //     this.state.email)
+
+    //   let currentUser = sessionStorage.getItem('email')
+    //   let authenticated = this.props.users.find(user => user.email === currentUser)
+
+    //   console.log(authenticated.id)
+
+    //   sessionStorage.setItem(
+    //     'userId',
+    //     authenticated.id
+    //   )
+
+    //   if (authenticated === undefined) {
+    //     alert("Your email address doesn't appear to be in our system. Please enter a valid email address or sign up below.")
+    //     window.location.reload()
+    //   } else {
+    //     this.props.updateComponent()
+    //     this.props.history.push('/')
+    //   }
+    // }
+
 
 
   render() {
@@ -68,6 +89,7 @@ class Login extends Component {
               onSubmit={this.handleLogin}>
               <Segment stacked>
                 <Form.Input
+                  id="email"
                   onChange={this.handleFieldChange}
                   type='email'
                   fluid icon='user'
@@ -75,6 +97,7 @@ class Login extends Component {
                   placeholder='E-mail address'
                   required autoFocus="" />
                 <Form.Input
+                  id="password"
                   onChange={this.handleFieldChange}
                   type='password'
                   fluid
@@ -92,7 +115,7 @@ class Login extends Component {
               </Segment>
             </Form>
             <Message>
-              First time? <a href='#'>Sign Up</a>
+              First time? <a href='http://localhost:3000/register'>Sign Up</a>
             </Message>
           </Grid.Column>
         </Grid>
