@@ -2,6 +2,7 @@ import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
 import Login from "./login/Login"
 import Registration from "./registration/Registration"
+import TripList from "./trips/TripList"
 
 export default class ApplicationViews extends Component {
 
@@ -9,12 +10,9 @@ export default class ApplicationViews extends Component {
     return (
       <React.Fragment>
 
-        <Route
-          exact path="/" render={props => {
-            return null
-            // Remove null and return the component which will show news articles
-          }}
-        />
+        <Route exact path="/" render={props => {
+          return <TripList />
+        }} />
 
         <Route path="/login" render={(props) => {
           return <Login />
