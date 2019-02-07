@@ -1,5 +1,7 @@
 import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
+import Login from "./login/Login"
+import Registration from "./registration/Registration"
 
 export default class ApplicationViews extends Component {
 
@@ -13,6 +15,14 @@ export default class ApplicationViews extends Component {
             // Remove null and return the component which will show news articles
           }}
         />
+
+        <Route path="/login" render={(props) => {
+          return <Login />
+        }} />
+
+        <Route path="/register" render={(props) => {
+          return <Registration />
+        }} />
 
         <Route
           path="/add_trip" render={props => {
