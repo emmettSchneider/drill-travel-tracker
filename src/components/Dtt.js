@@ -16,5 +16,6 @@ class Dtt extends Component {
 }
 
 DataManager.getRates();
+DataManager.getUserTrips(1);
 
 export default Dtt;

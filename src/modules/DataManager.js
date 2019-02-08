@@ -22,5 +22,9 @@ export default {
       },
       body: JSON.stringify(newUser)
     }).then(p => p.json())
+  },
+  getUserTrips(id) {
+    return fetch(`${jsonHost}/users/${id}?_embed=trips`)
+    .then(r => r.json())
   }
 }

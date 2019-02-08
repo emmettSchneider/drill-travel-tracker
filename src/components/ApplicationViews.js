@@ -3,8 +3,22 @@ import React, { Component } from "react";
 import Login from "./login/Login"
 import Registration from "./registration/Registration"
 import TripList from "./trips/TripList"
+import DataManager from "../modules/DataManager"
 
 export default class ApplicationViews extends Component {
+  state = {
+    trips: []
+  }
+
+  componentDidMount() {
+    const newState = {}
+
+    DataManager.getUserTrips()
+      .then(trips => newState.trips = trips)
+      .then(() => this.setState(newState))
+
+
+}
 
   render() {
     return (
