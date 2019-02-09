@@ -4,6 +4,8 @@ const jsonHost = "http://localhost:5002"
 let year = 2019
 let zip = 26505
 
+let currentUser = sessionStorage.getItem("userId")
+
 export default {
   getRates() {
     return fetch(`${gsaAPI}${year}%22,%22Zip%22:%22${zip}%22%7D`)
@@ -23,8 +25,14 @@ export default {
       body: JSON.stringify(newUser)
     }).then(p => p.json())
   },
+  getAllTrips() {
+    return fetch(`${jsonHost}/trips?userId=${currentUser}`)
+    .then(r => r.json())
+    // .then(r => console.log(r))
+  },
   getUserTrips(id) {
     return fetch(`${jsonHost}/users/${id}?_embed=trips`)
     .then(r => r.json())
+    .then(r => console.log(r))
   }
 }

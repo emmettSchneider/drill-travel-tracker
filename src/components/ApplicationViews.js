@@ -8,12 +8,12 @@ import DataManager from "../modules/DataManager"
 export default class ApplicationViews extends Component {
   state = {
     trips: []
-  }
+  };
 
   componentDidMount() {
     const newState = {}
 
-    DataManager.getUserTrips()
+    DataManager.getAllTrips()
       .then(trips => newState.trips = trips)
       .then(() => this.setState(newState))
 
@@ -25,7 +25,8 @@ export default class ApplicationViews extends Component {
       <React.Fragment>
 
         <Route exact path="/" render={props => {
-          return <TripList />
+          return <TripList {...props}
+          trips={this.state.trips}/>
         }} />
 
         <Route path="/login" render={(props) => {
