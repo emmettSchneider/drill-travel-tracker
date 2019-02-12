@@ -10,7 +10,7 @@ import TripForm from './trips/TripForm'
 export default class ApplicationViews extends Component {
   state = {
     trips: [],
-    userId: []
+    userId: ''
   };
 
   isAuthenticated = () => sessionStorage.getItem("userId") !== null
@@ -68,7 +68,8 @@ export default class ApplicationViews extends Component {
 
         <Route exact path="/trips" render={(props) => {
           return <TripList {...props}
-            trips={this.state.trips} />
+            trips={this.state.trips}
+            userId={this.state.userId} />
         }} />
 
         <Route
