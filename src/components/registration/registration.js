@@ -7,23 +7,18 @@ import DataManager from "../../modules/DataManager"
 class Registration extends Component {
 
   state = {
-    email: "",
-    password: "",
-    component: "",
-    userRank: "",
-    defaultZipCode: "",
-    defaultMiles: ""
+    email: '',
+    password: '',
+    component: '',
+    userRank: '',
+    defaultZipCode: '',
+    defaultMiles: ''
   }
 
   handleFieldChange = (e) => {
     const stateToChange = {}
     stateToChange[e.target.id] = e.target.value
     this.setState(stateToChange)
-  }
-
-  handleRegistration = (e) => {
-    e.preventDefault()
-
   }
 
   addNewUser = () => {
@@ -38,11 +33,8 @@ class Registration extends Component {
 
     console.log(user);
 
-    DataManager.postUser(user);
+    this.props.addUser(user).then(() => this.props.history.push('/login'));
 
-// Need an if statement to redirect only if user successfully registers
-
-    window.location.replace('http://localhost:3000/login')
 
   }
 

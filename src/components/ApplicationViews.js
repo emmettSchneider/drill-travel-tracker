@@ -1,46 +1,73 @@
-import { Route, Redirect } from "react-router-dom";
-import React, { Component } from "react";
-import Login from "./login/Login"
+import { Route, Redirect } from 'react-router-dom';
+import React, { Component } from 'react';
+import Login from './login/Login'
 import Registration from "./registration/Registration"
-import TripList from "./trips/TripList"
-import DataManager from "../modules/DataManager"
+import TripList from './trips/TripList'
+import TripForm from './trips/TripForm'
+import DataManager from '../modules/DataManager'
 
 export default class ApplicationViews extends Component {
   state = {
     trips: []
   };
 
+  isAuthenticated = () => sessionStorage.getItem("userId") !== null
+
   componentDidMount() {
-    const newState = {}
 
     DataManager.getAllTrips()
-      .then(trips => newState.trips = trips)
-      .then(() => this.setState(newState))
+      .then(trips => {
+        this.setState({ trips: trips });
+      })
+  }
 
+  addUser = (user) => DataManager.postUser(user)
+    .then(() => DataManager.getAllTrips())
+    .then(trips => this.setState({
+      trips: trips
+    }))
 
-}
+  addTrip = (trip) => DataManager.postTrip(trip)
+    .then(() => DataManager.getAllTrips())
+    .then(trips => this.setState({
+      trips: trips
+    })
+    )
+
+  updateComponent = () => {
+    DataManager.getAllTrips()
+      .then(trips => {
+        this.setState({ trips: trips });
+      })
+  }
 
   render() {
     return (
       <React.Fragment>
 
-        <Route exact path="/" render={props => {
-          return <TripList {...props}
-          trips={this.state.trips}/>
+        <Route exact path="/" render={(props) => {
+          if (this.isAuthenticated()) {
+            return <TripList {...props}
+              trips={this.state.trips}
+              />
+          } else {
+            return <Redirect to="/login" />
+          }
         }} />
 
         <Route path="/login" render={(props) => {
-          return <Login />
+          return <Login {...props} />
         }} />
 
         <Route path="/register" render={(props) => {
-          return <Registration />
+          return <Registration {...props}
+            addUser={this.addUser} />
         }} />
 
         <Route
-          path="/add_trip" render={props => {
-            return null
-            // Remove null and return the component which will show list of friends
+          path="/add_trip" render={(props) => {
+            return <TripForm {...props}
+              addTrip={this.addTrip} />
           }}
         />
 

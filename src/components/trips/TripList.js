@@ -12,7 +12,7 @@ export default class TripList extends Component {
             fluid color ='green'
               href='#'
               header='Trip dates'
-              description={`${trip.tripStart} to ${trip.tripEnd}`}
+              description={`${trip.datesRange}`}
             >
 
             </Card>
