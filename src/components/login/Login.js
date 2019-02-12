@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-no-duplicate-props */
 import React, { Component } from "react";
+import { Redirect } from 'react-router-dom';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import jeep from "./jeep-placeholder.png"
 import DataManager from "../../modules/DataManager"
@@ -7,8 +8,9 @@ import DataManager from "../../modules/DataManager"
 class Login extends Component {
 
   state = {
-    email: "",
-    password: "",
+    email: '',
+    password: '',
+    userId: ''
   }
 
   handleFieldChange = (e) => {
@@ -16,6 +18,7 @@ class Login extends Component {
     stateToChange[e.target.id] = e.target.value
     this.setState(stateToChange)
   }
+
 
 
   handleLogin = () => {
@@ -28,6 +31,9 @@ class Login extends Component {
           if (this.state.email === user.email && this.state.password === user.password) {
             console.log(`${user.email} with user ID ${user.id} is the current user`)
             sessionStorage.setItem('userId', user.id)
+            let userId = {userId: (sessionStorage.getItem('userId'))}
+            this.setState(userId)
+            this.props.history.push('/trips')
           } else if (usersProcessed === allUsers.length) {
             alert("The email and password you entered does not match the information we have on file. If you're a new user, please register an account.")
           } else {
@@ -36,32 +42,6 @@ class Login extends Component {
         })
       })
     }
-
-    //   e.preventDefault()
-
-    //   sessionStorage.setItem(
-    //     'email',
-    //     this.state.email)
-
-    //   let currentUser = sessionStorage.getItem('email')
-    //   let authenticated = this.props.users.find(user => user.email === currentUser)
-
-    //   console.log(authenticated.id)
-
-    //   sessionStorage.setItem(
-    //     'userId',
-    //     authenticated.id
-    //   )
-
-    //   if (authenticated === undefined) {
-    //     alert("Your email address doesn't appear to be in our system. Please enter a valid email address or sign up below.")
-    //     window.location.reload()
-    //   } else {
-    //     this.props.updateComponent()
-    //     this.props.history.push('/')
-    //   }
-    // }
-
 
 
   render() {

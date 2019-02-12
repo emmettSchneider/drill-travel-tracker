@@ -9,13 +9,13 @@ class NavBar extends Component {
             <nav className="navbar navbar-light light-blue flex-md-nowrap p-0 shadow">
                 <ul className="nav nav-pills nav-fill">
                     <li className="nav-item">
-                        <Link className="nav-link" to="/">Dashboard</Link>
+                        <Link className="nav-link" to="/trips">Trip dashboard</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/add_trip">Add New Trip</Link>
+                        <Link className="nav-link" to="/trips/add">Add New Trip</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/edit_trip">Edit Previous Trip</Link>
+                        <Link className="nav-link" to="/trips/edit">Edit Previous Trip</Link>
                     </li>
                     <li className="nav-item">
                         <Link className="nav-link" to="/summary">View Trip Expense Summary</Link>

@@ -34,5 +34,14 @@ export default {
     return fetch(`${jsonHost}/users/${id}?_embed=trips`)
     .then(r => r.json())
     .then(r => console.log(r))
+  },
+  postTrip(newTrip) {
+    return fetch(`${jsonHost}/trips`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newTrip)
+    }).then(p => p.json())
   }
 }
