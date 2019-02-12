@@ -4,7 +4,7 @@ const jsonHost = "http://localhost:5002"
 let year = 2019
 let zip = 26505
 
-let currentUser = sessionStorage.getItem("userId")
+
 
 export default {
   getRates() {
@@ -26,6 +26,7 @@ export default {
     }).then(p => p.json())
   },
   getAllTrips() {
+    let currentUser = sessionStorage.getItem("userId")
     return fetch(`${jsonHost}/trips?userId=${currentUser}`)
     .then(r => r.json())
     // .then(r => console.log(r))

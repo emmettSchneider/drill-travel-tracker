@@ -7,11 +7,12 @@ import DataManager from "../modules/DataManager";
 class Dtt extends Component {
   render() {
     return (
+
       <React.Fragment>
         <NavBar />
         <ApplicationViews />
       </React.Fragment>
-    );
+    )
   }
 }
 
