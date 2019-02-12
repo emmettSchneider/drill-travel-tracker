@@ -10,7 +10,7 @@ import TripForm from './trips/TripForm'
 export default class ApplicationViews extends Component {
   state = {
     trips: [],
-    userId: ''
+    userId: []
   };
 
   isAuthenticated = () => sessionStorage.getItem("userId") !== null

@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-no-duplicate-props */
 import React, { Component } from "react";
-import { Redirect } from 'react-router-dom';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import jeep from "./jeep-placeholder.png"
 import DataManager from "../../modules/DataManager"

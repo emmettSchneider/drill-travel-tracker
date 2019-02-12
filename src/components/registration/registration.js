@@ -2,7 +2,6 @@
 import React, { Component } from "react";
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import jeep from "../login/jeep-placeholder.png"
-import DataManager from "../../modules/DataManager"
 
 class Registration extends Component {
 
@@ -37,14 +36,6 @@ class Registration extends Component {
 
 
   }
-
-
-
-  // this.props.DataManager.postUser(user).then(p => {
-  //   console.log(p)
-  //   this.props.history.push("/login")
-  //   window.location.reload();
-  // })
 
 
   render() {

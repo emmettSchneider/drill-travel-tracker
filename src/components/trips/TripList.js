@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Redirect } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { Card } from 'semantic-ui-react'
 
 export default class TripList extends Component {
@@ -10,7 +10,7 @@ export default class TripList extends Component {
           {this.props.trips.map(trip =>
             <Card key = {trip.id}
             fluid color ='green'
-              href='#'
+              href='localhost/'
               header='Trip dates'
               description={`${trip.datesRange}`}
             >
