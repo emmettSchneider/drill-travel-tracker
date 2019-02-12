@@ -1,14 +1,16 @@
 import { Route, Redirect } from 'react-router-dom';
 import React, { Component } from 'react';
+import DataManager from '../modules/DataManager'
 import Login from './login/Login'
 import Registration from "./registration/Registration"
 import TripList from './trips/TripList'
 import TripForm from './trips/TripForm'
-import DataManager from '../modules/DataManager'
+
 
 export default class ApplicationViews extends Component {
   state = {
-    trips: []
+    trips: [],
+    userId: ''
   };
 
   isAuthenticated = () => sessionStorage.getItem("userId") !== null
@@ -20,6 +22,8 @@ export default class ApplicationViews extends Component {
         this.setState({ trips: trips });
       })
   }
+
+
 
   addUser = (user) => DataManager.postUser(user)
     .then(() => DataManager.getAllTrips())
@@ -47,9 +51,7 @@ export default class ApplicationViews extends Component {
 
         <Route exact path="/" render={(props) => {
           if (this.isAuthenticated()) {
-            return <TripList {...props}
-              trips={this.state.trips}
-              />
+            return <Redirect to='/trips' />
           } else {
             return <Redirect to="/login" />
           }
@@ -64,15 +66,20 @@ export default class ApplicationViews extends Component {
             addUser={this.addUser} />
         }} />
 
+        <Route exact path="/trips" render={(props) => {
+          return <TripList {...props}
+            trips={this.state.trips} />
+        }} />
+
         <Route
-          path="/add_trip" render={(props) => {
+          path="/trips/add" render={(props) => {
             return <TripForm {...props}
               addTrip={this.addTrip} />
           }}
         />
 
         <Route
-          path="/edit_trip" render={props => {
+          path="/trips/edit" render={props => {
             return null
             // Remove null and return the component which will show the messages
           }}
