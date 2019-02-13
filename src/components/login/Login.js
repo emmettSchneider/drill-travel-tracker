@@ -28,7 +28,10 @@ export default class Login extends Component {
           if (this.state.email === user.email && this.state.password === user.password) {
             console.log(`${user.email} with user ID ${user.id} is the current user`)
             sessionStorage.setItem('userId', user.id)
-            this.props.history.push('trips')
+            let userId = { userId: (sessionStorage.getItem('userId')) }
+            this.setState(userId)
+            this.props.userTrips()
+              .then(() => this.props.history.push('/trips'))
 
           } else if (usersProcessed === allUsers.length) {
             alert("The email and password you entered does not match the information we have on file. If you're a new user, please register an account.")

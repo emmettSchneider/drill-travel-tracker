@@ -15,13 +15,13 @@ export default class ApplicationViews extends Component {
 
   isAuthenticated = () => sessionStorage.getItem("userId") !== null
 
-  // userTrips = () => {
-  //   return DataManager.getAllTrips()
-  //     .then(trips => {
-  //       console.log(trips)
-  //       this.setState({ trips: trips });
-  //     })
-  // }
+  userTrips = () => {
+    return DataManager.getAllTrips()
+      .then(trips => {
+        console.log(trips)
+        this.setState({ trips: trips });
+      })
+  }
 
   componentDidMount() {
     DataManager.getAllTrips()
@@ -96,7 +96,10 @@ export default class ApplicationViews extends Component {
         <Route path="/login" render={(props) => {
           if (this.isAuthenticated()) {
             return <Redirect to='/trips' />
-          } else { return <Login to='/login' /> }
+          } else {
+            return <Login to='/login' {...props}
+              userTrips={this.userTrips} />
+          }
         }} />
 
         <Route path="/register" render={(props) => {
