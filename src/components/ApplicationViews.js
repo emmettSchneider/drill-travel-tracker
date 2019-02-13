@@ -82,7 +82,7 @@ export default class ApplicationViews extends Component {
         <Route exact path="/" render={(props) => {
           if (this.isAuthenticated()) {
             return <Redirect to='/trips' />
-          } else { return <Login to='/login' /> }
+          } else { return <Redirect to='/login' /> }
         }} />
 
         <Route exact path="/trips" render={(props) => {
@@ -90,6 +90,12 @@ export default class ApplicationViews extends Component {
             return <TripList {...props}
               deleteTrip={this.deleteTrip}
               trips={this.state.trips} />
+          } else { return <Redirect to='/login' /> }
+        }} />
+
+        <Route path="/login" render={(props) => {
+          if (this.isAuthenticated()) {
+            return <Redirect to='/trips' />
           } else { return <Login to='/login' /> }
         }} />
 
