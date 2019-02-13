@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Card, Button, Icon } from 'semantic-ui-react'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 // import DataManager from '../../modules/DataManager';
 
 export default class TripList extends Component {
@@ -14,6 +14,7 @@ export default class TripList extends Component {
               key={trip.id}
               fluid color='green'
             >
+
               <Card.Content>
                 <Card.Header>Trip dates</Card.Header>
                 <Card.Meta>{`${trip.datesRange}`}</Card.Meta>
@@ -26,14 +27,18 @@ export default class TripList extends Component {
                       Add lodging
                   </Button.Content>
                   </Button>
-                  <Button animated='vertical'>
+                  <Button animated='vertical' >
                     <Button.Content visible>
                       <Icon name='utensils' />
                     </Button.Content>
                     <Button.Content hidden>Add meals
                     </Button.Content>
                   </Button>
-                  <Button animated='vertical'>
+                  <Button animated='vertical'
+                    onClick={() => {
+                      console.log("airfare button clicked!")
+                      this.props.history.push(`/trips/airfare/${trip.id}`)
+                    }} >
                     <Button.Content visible>
                       <Icon name='plane' />
                     </Button.Content>
@@ -61,7 +66,7 @@ export default class TripList extends Component {
                       console.log("delete button clicked!")
                       console.log(this.props)
                       this.props.deleteTrip(trip.id)
-                      }}>
+                    }}>
                     <Button.Content visible>
                       <Icon name='trash' />
                     </Button.Content>

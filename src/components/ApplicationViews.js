@@ -5,7 +5,7 @@ import Login from './login/Login'
 import RegisterUser from "./registration/RegisterUser"
 import TripList from './trips/TripList'
 import TripForm from './trips/TripForm'
-import TripEditLinks from './trips/TripEditLinks'
+import TripAirfare from './trips/TripAirfare'
 
 
 export default class ApplicationViews extends Component {
@@ -116,10 +116,9 @@ export default class ApplicationViews extends Component {
         />
 
         <Route
-          path="/trips/edit/:tripId(\d+)/"
+          path="/trips/airfare/:tripId(\d+)/"
           render={props => {
-            return <TripEditLinks {...props}
-              updateTrip={this.updateTrip}
+            return <TripAirfare {...props}
             />
           }
           }
