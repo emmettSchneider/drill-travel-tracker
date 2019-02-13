@@ -44,5 +44,11 @@ export default {
       },
       body: JSON.stringify(newTrip)
     }).then(p => p.json())
+  },
+  deleteTrip(id) {
+    return fetch(`${jsonHost}/trips/${id}`, {
+      method: "DELETE"
+    })
+    .then(r => r.json())
   }
 }

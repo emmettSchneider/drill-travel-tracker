@@ -41,7 +41,7 @@ export default class TripForm extends Component {
 
     console.log(trip);
 
-    this.props.addTrip(trip).then(() => this.props.history.push('/'));
+    this.props.addTrip(trip).then(() => this.props.history.push('/trips'));
   }
 
   render() {

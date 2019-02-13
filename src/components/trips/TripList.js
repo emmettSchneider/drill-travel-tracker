@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
-// import { Link } from 'react-router-dom';
 import { Card, Button, Icon } from 'semantic-ui-react'
-import DataManager from '../../modules/DataManager'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
+// import DataManager from '../../modules/DataManager';
 
 export default class TripList extends Component {
 
   render() {
-    console.log(this.props)
     return (
       <React.Fragment>
         <section className='trips'>
@@ -15,30 +13,62 @@ export default class TripList extends Component {
             <Card
               key={trip.id}
               fluid color='green'
-              header='Trip dates'
             >
               <Card.Content>
                 <Card.Header>Trip dates</Card.Header>
                 <Card.Meta>{`${trip.datesRange}`}</Card.Meta>
-                <Button animated
-                size='medium'>
-                  <Button.Content visible>
-                    <Icon name='bed' />
+                <Button.Group widths='3'>
+                  <Button animated='vertical'>
+                    <Button.Content visible>
+                      <Icon name='bed' />
+                    </Button.Content>
+                    <Button.Content hidden>
+                      Add lodging
                   </Button.Content>
-                  <Button.Content hidden>
-                    Add lodging
-                  </Button.Content>
-                </Button>
-                <Button animated='vertical'>
-                  <Button.Content hidden></Button.Content>
-                  <Button.Content visible>
-                    <Icon name='shop' />
-                  </Button.Content>
-                </Button>
-                <Button animated='fade'>
-                  <Button.Content visible>Sign-up for a Pro account</Button.Content>
-                  <Button.Content hidden>$12.99 a month</Button.Content>
-                </Button>
+                  </Button>
+                  <Button animated='vertical'>
+                    <Button.Content visible>
+                      <Icon name='utensils' />
+                    </Button.Content>
+                    <Button.Content hidden>Add meals
+                    </Button.Content>
+                  </Button>
+                  <Button animated='vertical'>
+                    <Button.Content visible>
+                      <Icon name='plane' />
+                    </Button.Content>
+                    <Button.Content hidden>Add airfare
+                    </Button.Content>
+                  </Button>
+                </Button.Group>
+                <Button.Group widths='3'>
+                  <Button animated='vertical'>
+                    <Button.Content visible>
+                      <Icon name='car' />
+                    </Button.Content>
+                    <Button.Content hidden>Add rental car
+                    </Button.Content>
+                  </Button>
+                  <Button animated='vertical'>
+                    <Button.Content visible>
+                      <Icon name='suitcase' />
+                    </Button.Content>
+                    <Button.Content hidden>Add other expenses
+                    </Button.Content>
+                  </Button>
+                  <Button animated='vertical'
+                    onClick={() => {
+                      console.log("delete button clicked!")
+                      console.log(this.props)
+                      this.props.deleteTrip(trip.id)
+                      }}>
+                    <Button.Content visible>
+                      <Icon name='trash' />
+                    </Button.Content>
+                    <Button.Content hidden>Delete trip
+                    </Button.Content>
+                  </Button>
+                </Button.Group>
               </Card.Content>
 
               {/* <Link to={`/trips/edit/${trip.id}`}></Link> */}

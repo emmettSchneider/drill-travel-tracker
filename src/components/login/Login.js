@@ -30,7 +30,6 @@ class Login extends Component {
             sessionStorage.setItem('userId', user.id)
             let userId = { userId: (sessionStorage.getItem('userId')) }
             this.setState(userId)
-            this.props.userTrips()
             .then(() => this.props.history.push('/trips'))
 
           } else if (usersProcessed === allUsers.length) {

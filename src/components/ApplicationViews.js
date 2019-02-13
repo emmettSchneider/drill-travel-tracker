@@ -10,35 +10,69 @@ import TripEditLinks from './trips/TripEditLinks'
 
 export default class ApplicationViews extends Component {
   state = {
-    trips: [],
-    userId: ''
+    trips: []
   };
 
   isAuthenticated = () => sessionStorage.getItem("userId") !== null
 
-  userTrips = () => {
-    return DataManager.getAllTrips()
-      .then(trips => {console.log(trips)
-        this.setState({ trips: trips });
-      })
-  }
+  // userTrips = () => {
+  //   return DataManager.getAllTrips()
+  //     .then(trips => {
+  //       console.log(trips)
+  //       this.setState({ trips: trips });
+  //     })
+  // }
 
   componentDidMount() {
-    this.userTrips()
+    DataManager.getAllTrips()
+      .then(trips => {
+        this.setState(
+          { trips: trips })
+      })
   }
 
   addUser = (user) => DataManager.postUser(user)
     .then(() => DataManager.getAllTrips())
-    .then(trips => this.setState({
-      trips: trips
-    }))
+    .then(trips => this.setState(
+      { trips: trips })
+    )
 
   addTrip = (trip) => DataManager.postTrip(trip)
     .then(() => DataManager.getAllTrips())
-    .then(trips => this.setState({
-      trips: trips
-    })
+    .then(trips => this.setState(
+      { trips: trips })
     )
+
+  deleteTrip = id => {
+    console.log("Yes, deleteTrip is a function.")
+    DataManager.deleteTrip(id)
+      .then(() => DataManager.getAllTrips())
+      .then(trips => this.setState(
+        { trips: trips }))
+  }
+
+
+  // (id) => {
+  //   return fetch(`http://localhost:5002/trips/${id}`, {
+  //     method: "DELETE"
+  //   })
+  //     .then(r => r.json())
+  //     .then(() => DataManager.getAllTrips())
+  //     .then(trips =>
+  //       this.setState({
+  //         trips: trips
+  //       })
+  //     )
+  // }
+
+
+
+  // return DataManager.deleteThisTrip(id)
+  //   .then(() => DataManager.getAllTrips())
+  //   .then(trips => this.setState(
+  //     { trips: trips })
+  //   )
+  // }
 
 
   render() {
@@ -46,15 +80,17 @@ export default class ApplicationViews extends Component {
       <React.Fragment>
 
         <Route exact path="/" render={(props) => {
-          return <Login to="/login" {...props}
-            userTrips={this.userTrips} />
+          if (this.isAuthenticated()) {
+            return <Redirect to='/trips' />
+          } else { return <Login to='/login' /> }
         }} />
 
         <Route exact path="/trips" render={(props) => {
           if (this.isAuthenticated()) {
             return <TripList {...props}
+              deleteTrip={this.deleteTrip}
               trips={this.state.trips} />
-          } else { return <Redirect to='/login' /> }
+          } else { return <Login to='/login' /> }
         }} />
 
         <Route path="/register" render={(props) => {
