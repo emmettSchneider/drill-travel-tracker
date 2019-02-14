@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import { Grid, Form, Header, Segment, Image, Button } from 'semantic-ui-react'
-import bed from "./bed-placeholder.png"
+import car from "./car-placeholder.png"
 
-export default class TripLodging extends Component {
+export default class TripRentalCar extends Component {
 
   state = {
-    roomCost: '',
-    roomTax: ''
+    rentalCar: '',
   }
 
   handleFieldChange = (e) => {
@@ -24,22 +23,21 @@ export default class TripLodging extends Component {
   patchTrip = () => {
     // let currentUser = Number(sessionStorage.getItem("userId"))
 
-    const lodging = {
-      roomCost: Number(this.state.roomCost),
-      roomTax: Number(this.state.roomTax)
+    const rentalCar = {
+      rentalCar: Number(this.state.rentalCar)
     }
 
     const id = this.props.match.params.tripId
 
-    console.log(lodging);
+    console.log(rentalCar);
 
-    this.props.updateTrip(id, lodging)
+    this.props.updateTrip(id, rentalCar)
     this.props.history.push('/trips')
   }
 
   render() {
     return (
-      <div className='lodging-form'>
+      <div className='car-form'>
         {/*
     Heads up! The styles below are necessary for the correct render of this example.
     You can do same with CSS, the main idea is that all the elements up to the `Grid`
@@ -55,32 +53,23 @@ export default class TripLodging extends Component {
         <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
             <Header as='h2' color='teal' textAlign='left'>
-              <Image src={bed} /> Add cost of lodging to this trip
+              <Image src={car} /> Add rental car cost to this trip
       </Header>
             <Form size='large' >
               <Segment stacked>
                 <Form.Input
-                  placeholder='Room cost (excluding taxes)'
-                  id='roomCost'
+                  placeholder='Rental car cost (total)'
+                  id='rentalCar'
                   onChange={this.handleFieldChange}
                   type='number'
-                  icon='bed'
-                  iconPosition='left'
-                />
-                <Form.Input
-                  placeholder='Room taxes &amp; fees'
-                  id='roomTax'
-                  onChange={this.handleFieldChange}
-                  type='number'
-                  icon='university'
+                  icon='car'
                   iconPosition='left'
                 />
                 <Button type='submit'
                   color='teal'
                   fluid size='large'
                   onClick={() => this.patchTrip()}
-                >Add cost of lodging</Button>
-                <br></br>
+                >Add cost of rental car</Button><br></br>
                 <Button
                   color='grey'
                   fluid size='large'

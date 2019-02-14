@@ -22,12 +22,16 @@ export default class TripForm extends Component {
     }
   }
 
+
+
   addNewTrip = () => {
     let currentUser = Number(sessionStorage.getItem("userId"))
 
     const trip = {
       userId: currentUser,
-      datesRange: this.state.datesRange,
+      tripYear: this.state.datesRange.slice(6, 10),
+      tripStart: this.state.datesRange.slice(0, 10),
+      tripEnd: this.state.datesRange.slice(13, 23),
       zipCode: Number(this.state.zipCode),
       tripMiles: Number(this.state.tripMiles * 2),
       localMiles: 0,
@@ -56,6 +60,7 @@ export default class TripForm extends Component {
               value={this.state.datesRange}
               iconPosition="left"
               onChange={this.handleChange}
+              required
             />
           </Form.Field>
 
@@ -65,6 +70,7 @@ export default class TripForm extends Component {
               id='zipCode'
               onChange={this.handleFieldChange}
               type='number'
+              required
             />
           </Form.Field>
           <Form.Field>

@@ -8,6 +8,8 @@ import TripForm from './trips/TripForm'
 import TripLodging from './trips/TripLodging'
 import TripMeals from './trips/TripMeals'
 import TripAirfare from './trips/TripAirfare'
+import TripRentalCar from './trips/TripRentalCar';
+import TripSummary from './trips/TripSummary';
 
 
 export default class ApplicationViews extends Component {
@@ -150,9 +152,18 @@ export default class ApplicationViews extends Component {
         />
 
         <Route
-          path="/summary" render={props => {
-            return null
-            // Remove null and return the component which will show the user's tasks
+          path="/trips/rental_car/:tripId(\d+)/"
+          render={props => {
+            return <TripRentalCar {...props}
+              updateTrip={this.updateTrip} />
+          }}
+        />
+
+        <Route
+          exact path="/trips/summary" render={(props) => {
+            return <TripSummary {...props}
+            trips={this.state.trips}
+            userTrips={this.userTrips} />
           }}
         />
 
