@@ -17,7 +17,7 @@ export default class TripList extends Component {
                 <Card.Meta>{`${trip.datesRange}`}</Card.Meta>
                 <p>Destination ZIP Code: {trip.zipCode} <br></br>
                   Miles round-trip: {trip.tripMiles}<br></br>
-                  Meals &amp; Incidental Expenses: {trip.mealCost} <br></br>
+                  Meals &amp; incidental expenses: {trip.mealCost} <br></br>
                   Lodging cost: {trip.roomCost} <br></br>
                   Lodging tax: {trip.roomTax}</p>
                 <Button.Group widths='3'>
@@ -33,7 +33,11 @@ export default class TripList extends Component {
                       Add lodging
                   </Button.Content>
                   </Button>
-                  <Button animated='vertical' >
+                  <Button animated='vertical'
+                    onClick={() => {
+                      console.log("meals button clicked!")
+                      this.props.history.push(`/trips/meals/${trip.id}`)
+                    }} >
                     <Button.Content visible>
                       <Icon name='utensils' />
                     </Button.Content>

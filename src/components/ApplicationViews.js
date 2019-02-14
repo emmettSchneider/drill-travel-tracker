@@ -5,8 +5,9 @@ import Login from './login/Login'
 import RegisterUser from "./registration/RegisterUser"
 import TripList from './trips/TripList'
 import TripForm from './trips/TripForm'
-import TripAirfare from './trips/TripAirfare'
 import TripLodging from './trips/TripLodging'
+import TripMeals from './trips/TripMeals'
+import TripAirfare from './trips/TripAirfare'
 
 
 export default class ApplicationViews extends Component {
@@ -52,9 +53,9 @@ export default class ApplicationViews extends Component {
         { trips: trips }))
   }
 
-  updateAirfare = (id, airfare) => {
+  updateTrip = (id, trip) => {
     console.log("Here goes nothing!")
-    DataManager.patchTrip(id, airfare)
+    DataManager.patchTrip(id, trip)
       .then(() => DataManager.getAllTrips())
       .then(trips => this.setState(
         { trips: trips }))
@@ -125,18 +126,26 @@ export default class ApplicationViews extends Component {
         />
 
         <Route
-          path="/trips/airfare/:tripId(\d+)/"
+          path="/trips/lodging/:tripId(\d+)/"
           render={props => {
-            return <TripAirfare {...props}
-              updateAirfare={this.updateAirfare} />
+            return <TripLodging {...props}
+              updateTrip={this.updateTrip} />
           }}
         />
 
         <Route
-          path="/trips/lodging/:tripId(\d+)/"
+          path="/trips/meals/:tripId(\d+)/"
           render={props => {
-            return <TripLodging {...props}
-              updateAirfare={this.updateAirfare} />
+            return <TripMeals {...props}
+              updateTrip={this.updateTrip} />
+          }}
+        />
+
+        <Route
+          path="/trips/airfare/:tripId(\d+)/"
+          render={props => {
+            return <TripAirfare {...props}
+              updateTrip={this.updateTrip} />
           }}
         />
 

@@ -20,7 +20,7 @@ export default class TripAirfare extends Component {
     }
   }
 
-  patchAirfare = () => {
+  patchTrip = () => {
     // let currentUser = Number(sessionStorage.getItem("userId"))
 
     const airfare = {
@@ -31,7 +31,7 @@ export default class TripAirfare extends Component {
 
     console.log(airfare);
 
-    this.props.updateAirfare(id, airfare)
+    this.props.updateTrip(id, airfare)
     this.props.history.push('/trips')
   }
 
@@ -68,7 +68,7 @@ export default class TripAirfare extends Component {
                 <Button type='submit'
                   color='teal'
                   fluid size='large'
-                  onClick={() => this.patchAirfare()}
+                  onClick={() => this.patchTrip()}
                 >Add airfare</Button><br></br>
                 <Button
                   color='grey'
