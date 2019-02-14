@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import { Grid, Form, Header, Segment, Image, Button } from 'semantic-ui-react'
 import airplane from "./airplane-placeholder.png"
 
-export default class TripAirfare extends Component {
+export default class TripLodging extends Component {
 
   state = {
-    airfare: '',
+    roomCost: '',
+    roomTax: ''
   }
 
   handleFieldChange = (e) => {
@@ -23,15 +24,16 @@ export default class TripAirfare extends Component {
   patchAirfare = () => {
     // let currentUser = Number(sessionStorage.getItem("userId"))
 
-    const airfare = {
-      airfare: Number(this.state.airfare)
+    const lodging = {
+      roomCost: Number(this.state.roomCost),
+      roomTax: Number(this.state.roomTax)
     }
 
     const id = this.props.match.params.tripId
 
-    console.log(airfare);
+    console.log(lodging);
 
-    this.props.updateAirfare(id, airfare)
+    this.props.updateAirfare(id, lodging)
     this.props.history.push('/trips')
   }
 
@@ -53,23 +55,32 @@ export default class TripAirfare extends Component {
         <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
             <Header as='h2' color='teal' textAlign='left'>
-              <Image src={airplane} /> Add airfare to this trip
+              <Image src={airplane} /> Add cost of lodging to this trip
       </Header>
             <Form size='large' >
               <Segment stacked>
                 <Form.Input
-                  placeholder='Airfare (total)'
-                  id='airfare'
+                  placeholder='Room cost (excluding taxes)'
+                  id='roomCost'
                   onChange={this.handleFieldChange}
                   type='number'
-                  icon='plane'
+                  icon='bed'
+                  iconPosition='left'
+                />
+                <Form.Input
+                  placeholder='Room cost (excluding taxes)'
+                  id='roomTax'
+                  onChange={this.handleFieldChange}
+                  type='number'
+                  icon='university'
                   iconPosition='left'
                 />
                 <Button type='submit'
                   color='teal'
                   fluid size='large'
                   onClick={() => this.patchAirfare()}
-                >Add airfare</Button><br></br>
+                >Add cost of lodging</Button>
+                <br></br>
                 <Button
                   color='grey'
                   fluid size='large'

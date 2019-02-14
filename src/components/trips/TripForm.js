@@ -29,7 +29,7 @@ export default class TripForm extends Component {
       userId: currentUser,
       datesRange: this.state.datesRange,
       zipCode: Number(this.state.zipCode),
-      tripMiles: Number(this.state.tripMiles),
+      tripMiles: Number(this.state.tripMiles * 2),
       localMiles: 0,
       airfare: 0,
       rentalCar: 0,

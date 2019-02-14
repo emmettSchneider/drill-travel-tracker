@@ -11,14 +11,21 @@ export default class TripList extends Component {
           {this.props.trips.map(trip =>
             <Card
               key={trip.id}
-              fluid color='green'
-            >
-
+              fluid color='green'>
               <Card.Content>
                 <Card.Header>Trip dates</Card.Header>
                 <Card.Meta>{`${trip.datesRange}`}</Card.Meta>
+                <p>Destination ZIP Code: {trip.zipCode} <br></br>
+                  Miles round-trip: {trip.tripMiles}<br></br>
+                  Meals &amp; Incidental Expenses: {trip.mealCost} <br></br>
+                  Lodging cost: {trip.roomCost} <br></br>
+                  Lodging tax: {trip.roomTax}</p>
                 <Button.Group widths='3'>
-                  <Button animated='vertical'>
+                  <Button animated='vertical'
+                    onClick={() => {
+                      console.log("lodging button clicked!")
+                      this.props.history.push(`/trips/lodging/${trip.id}`)
+                    }} >
                     <Button.Content visible>
                       <Icon name='bed' />
                     </Button.Content>
