@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Card, Button, Icon } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
 // import DataManager from '../../modules/DataManager';
 
 export default class TripList extends Component {

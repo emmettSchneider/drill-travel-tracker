@@ -51,6 +51,14 @@ export default class ApplicationViews extends Component {
         { trips: trips }))
   }
 
+  updateAirfare = (id, airfare) => {
+    console.log("Here goes nothing!")
+    DataManager.patchTrip(id, airfare)
+      .then(() => DataManager.getAllTrips())
+      .then(trips => this.setState(
+        { trips: trips }))
+  }
+
 
   // (id) => {
   //   return fetch(`http://localhost:5002/trips/${id}`, {
@@ -119,9 +127,8 @@ export default class ApplicationViews extends Component {
           path="/trips/airfare/:tripId(\d+)/"
           render={props => {
             return <TripAirfare {...props}
-            />
-          }
-          }
+            updateAirfare={this.updateAirfare} />
+          }}
         />
 
         <Route

@@ -27,13 +27,15 @@ export default class TripAirfare extends Component {
       airfare: Number(this.state.airfare)
     }
 
+    const id = this.props.match.params.tripId
+
     console.log(airfare);
 
-    this.props.updateAirfare(airfare).then(() => this.props.history.push('/trips'));
+    this.props.updateAirfare(id, airfare)
+    this.props.history.push('/trips')
   }
 
   render() {
-    console.log('tripId =' + this.props.match.params.tripId)
     return (
       <div className='airfare-form'>
         {/*

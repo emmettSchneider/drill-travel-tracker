@@ -28,13 +28,13 @@ export default {
   getAllTrips() {
     let currentUser = sessionStorage.getItem("userId")
     return fetch(`${jsonHost}/trips?userId=${currentUser}`)
-    .then(r => r.json())
+      .then(r => r.json())
     // .then(r => console.log(r))
   },
   getUserTrips(id) {
     return fetch(`${jsonHost}/users/${id}?_embed=trips`)
-    .then(r => r.json())
-    .then(r => console.log(r))
+      .then(r => r.json())
+      .then(r => console.log(r))
   },
   postTrip(newTrip) {
     return fetch(`${jsonHost}/trips`, {
@@ -49,6 +49,15 @@ export default {
     return fetch(`${jsonHost}/trips/${id}`, {
       method: "DELETE"
     })
-    .then(r => r.json())
+      .then(r => r.json())
+  },
+  patchTrip(id, trip) {
+    return fetch(`${jsonHost}/trips/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(trip)
+    })
   }
 }
