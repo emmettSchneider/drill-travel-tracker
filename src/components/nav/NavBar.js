@@ -11,6 +11,7 @@ class NavBar extends Component {
   render() {
     return (
       <nav className="navbar navbar-light light-blue flex-md-nowrap p-0 shadow">
+      <h1>Drill Travel Tracker</h1>
         <ul className="nav nav-pills nav-fill">
           <li className="nav-item">
             <Link className="nav-link" to="/trips">Trip dashboard</Link>

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import NavBar from "./nav/NavBar";
 import ApplicationViews from "./ApplicationViews";
 import "./Dtt.css";
-import DataManager from "../modules/DataManager";
+// import DataManager from "../modules/DataManager";
 
 class Dtt extends Component {
   render() {
@@ -16,8 +16,8 @@ class Dtt extends Component {
   }
 }
 
-DataManager.getRates();
-DataManager.getAllTrips();
-DataManager.getUserTrips(1);
+// DataManager.getRates();
+// DataManager.getAllTrips();
+// DataManager.getUserTrips(1);
 
 export default Dtt;

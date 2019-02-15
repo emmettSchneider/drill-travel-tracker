@@ -22,7 +22,7 @@ export default class TripForm extends Component {
     let SumAirfare = this.props.trips.reduce((prev, cur) => prev + cur.airfare, 0)
     let SumRentalCar = this.props.trips.reduce((prev, cur) => prev + cur.rentalCar, 0)
     let SumOtherCost = this.props.trips.reduce((prev, cur) => prev + cur.otherCost, 0)
-    let SumTravelExpenseNotMilesOrMeals = (SumRoomTax + SumRoomTax + SumAirfare + SumRentalCar + SumOtherCost)
+    let SumTravelExpenseNotMilesOrMeals = (SumRoomCost + SumRoomTax + SumAirfare + SumRentalCar + SumOtherCost)
 
     let SumMilesAndTravelExpenses = (SumStdMileRate + SumTravelExpenseNotMilesOrMeals)
 

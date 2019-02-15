@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Grid, Form, Header, Segment, Image, Button } from 'semantic-ui-react'
 import bed from "./bed-placeholder.png"
+import DataManager from "../../modules/DataManager"
 
 export default class TripLodging extends Component {
 
@@ -38,6 +39,9 @@ export default class TripLodging extends Component {
   }
 
   render() {
+    console.log(this.props)
+    DataManager.getOneTrip(this.props.match.params.tripId)
+    // .then(DataManager.getRates(this.tripYear, this.zipCode))
     return (
       <div className='lodging-form'>
         {/*
