@@ -10,7 +10,7 @@ export default {
   getRates(year, zip) {
     return fetch(`${gsaAPI}${year}%22,%22Zip%22:%22${zip}%22%7D`)
       .then(r => r.json())
-      // .then(r => console.log(r.result.records[0]))
+      .then(r => console.log(r.result.records[0]))
   },
   getAllUsers() {
     return fetch(`${jsonHost}/users`)
@@ -34,12 +34,12 @@ export default {
   getUserTrips(id) {
     return fetch(`${jsonHost}/users/${id}?_embed=trips`)
       .then(r => r.json())
-      .then(r => console.log(r))
+      // .then(r => console.log(r))
   },
   getOneTrip(id) {
     return fetch(`${jsonHost}/trips/${id}`)
       .then(r => r.json())
-      .then(r => console.log(r))
+      // .then(r => console.log(r))
   },
   postTrip(newTrip) {
     return fetch(`${jsonHost}/trips`, {

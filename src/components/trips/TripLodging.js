@@ -40,9 +40,14 @@ export default class TripLodging extends Component {
 
   render() {
     console.log(this.props)
+
+
     DataManager.getOneTrip(this.props.match.params.tripId)
+    .then(r => DataManager.getRates(r.tripYear, r.zipCode))
     // .then(DataManager.getRates(this.tripYear, this.zipCode))
+
     return (
+      <React.Fragment>
       <div className='lodging-form'>
         {/*
     Heads up! The styles below are necessary for the correct render of this example.
@@ -63,6 +68,14 @@ export default class TripLodging extends Component {
       </Header>
             <Form size='large' >
               <Segment stacked>
+              <Form.Input
+                  placeholder='Room cost (excluding taxes)'
+                  id='roomCost'
+                  onChange={this.handleFieldChange}
+                  type='number'
+                  icon='bed'
+                  iconPosition='left'
+                />
                 <Form.Input
                   placeholder='Room cost (excluding taxes)'
                   id='roomCost'
@@ -96,6 +109,7 @@ export default class TripLodging extends Component {
           </Grid.Column>
         </Grid>
       </div>
+      </React.Fragment>
     )
   }
 }
