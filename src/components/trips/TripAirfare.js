@@ -1,8 +1,12 @@
+// This module allows the user to add airfare to a trip
+
 import React, { Component } from 'react'
 import { Grid, Form, Header, Segment, Image, Button } from 'semantic-ui-react'
 import airplane from "./airplane-placeholder.png"
 
 export default class TripAirfare extends Component {
+
+// Airfare is the only state required in this module
 
   state = {
     airfare: '',
@@ -20,8 +24,9 @@ export default class TripAirfare extends Component {
     }
   }
 
+// patchTrip uses the PATCH method to add airfare to an existing trip
+
   patchTrip = () => {
-    // let currentUser = Number(sessionStorage.getItem("userId"))
 
     const airfare = {
       airfare: Number(this.state.airfare)
@@ -31,6 +36,9 @@ export default class TripAirfare extends Component {
 
     console.log(airfare);
 
+
+// updateTrip function from ApplicationViews.js patches the trip, fetches the user's trips, and moves the user back to the trip dashboard.
+
     this.props.updateTrip(id, airfare)
     this.props.history.push('/trips')
   }
@@ -38,11 +46,9 @@ export default class TripAirfare extends Component {
   render() {
     return (
       <div className='airfare-form'>
-        {/*
-    Heads up! The styles below are necessary for the correct render of this example.
-    You can do same with CSS, the main idea is that all the elements up to the `Grid`
-    below must have a height of 100%.
-  */}
+
+{/* The form below collects the user's airfare input, sets it to state, and calls the patchTrip function when the "Add airfare" button is clicked. The "Cancel" button moves the user back to the trip dashboard without making any changes. Style is from Semantic UI login example */}
+
         <style>{`
     body > div,
     body > div > div,

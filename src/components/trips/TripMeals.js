@@ -1,8 +1,12 @@
+// This module allows the user to add the cost of meals & incidental expenses (M&IE) to a trip. The module also uses the previously entered trip ZIP Code to query the GSA's per diem API and return the per diem meal rate limit for the user's trip destination ZIP Code.
+
 import React, { Component } from 'react'
 import { Grid, Form, Header, Segment, Image, Button } from 'semantic-ui-react'
 import meal from "./meal-placeholder.png"
 
 export default class TripMeals extends Component {
+
+  // mealCost is the only states required in this module
 
   state = {
     mealCost: '',
@@ -20,8 +24,9 @@ export default class TripMeals extends Component {
     }
   }
 
+  // patchTrip uses the PATCH method to add mealCost to an existing trip
+
   patchTrip = () => {
-    // let currentUser = Number(sessionStorage.getItem("userId"))
 
     const meals = {
       mealCost: Number(this.state.mealCost)
@@ -31,18 +36,21 @@ export default class TripMeals extends Component {
 
     console.log(meals);
 
+    // updateTrip function from ApplicationViews.js patches the trip, fetches the user's trips, and moves the user back to the trip dashboard.
+
     this.props.updateTrip(id, meals)
     this.props.history.push('/trips')
   }
 
   render() {
+
+    // Providing the user with a visual per diem reference is still in progress. The API fetch works, now I need to display the relevant data in the cells of the table.
+
     return (
       <div className='meals-form'>
-        {/*
-    Heads up! The styles below are necessary for the correct render of this example.
-    You can do same with CSS, the main idea is that all the elements up to the `Grid`
-    below must have a height of 100%.
-  */}
+
+        {/* The form below collects the user's meal cost and room tax input, sets it to state, and calls the patchTrip function when the "Add M&IE" button is clicked. The "Cancel" button moves the user back to the trip dashboard without making any changes. Style is from Semantic UI login example */}
+
         <style>{`
     body > div,
     body > div > div,

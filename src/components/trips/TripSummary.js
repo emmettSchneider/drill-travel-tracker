@@ -1,3 +1,5 @@
+// This module takes the data from all the user's trips for a year and returns the amounts the user should enter on IRS Form 2106. This trip summary is the ultimate purpose of the app. The user (likely a member of the National Guard or Reserves) will be able to reduce their Adjusted Gross Income (AGI) by the amount shown in line 10. This is referred to as an "above-the-line deduction" and can be taken whether the user itemizes deductions or takes the standard deduction.
+
 import React, { Component } from 'react'
 import { Header, Label, Table } from 'semantic-ui-react'
 
@@ -8,15 +10,22 @@ export default class TripForm extends Component {
 
   render() {
 
+    // The trip props are passed to this module, and the reduce function is used to sum the values of the pertinent trip key/value pairs.
+
+    // Sum of miles to destination and local miles (often referred to as in-and-around mileage)
     let SumMiles = this.props.trips.reduce((prev, cur) => prev + cur.tripMiles, 0)
     let SumLocalMiles = this.props.trips.reduce((prev, cur) => prev + cur.localMiles, 0)
 
+    // Multiplies the total miles traveled for duty by the federal mileage rate of $0.545 per mile
     let SumTotalMiles = (SumMiles + SumLocalMiles)
     let SumStdMileRate = (SumTotalMiles * 0.545)
 
+    // Multiplies the total meal cost for the year by 0.50 because half of the meal cost is the amount allowed for this deduction
     let SumMealCost = this.props.trips.reduce((prev, cur) => prev + cur.mealCost, 0)
     let HalfSumMealCost = (SumMealCost * 0.50)
 
+
+    // Takes the totals for roomCost, roomTax, airfare, rentalCar, and otherCost and sums them because they are categorically combined on Form 2106. Their separation in the application simply makes it easier for the user to enter these costs as they're incurred and trace the amounts to their receipts.
     let SumRoomCost = this.props.trips.reduce((prev, cur) => prev + cur.roomCost, 0)
     let SumRoomTax = this.props.trips.reduce((prev, cur) => prev + cur.roomTax, 0)
     let SumAirfare = this.props.trips.reduce((prev, cur) => prev + cur.airfare, 0)
@@ -24,10 +33,14 @@ export default class TripForm extends Component {
     let SumOtherCost = this.props.trips.reduce((prev, cur) => prev + cur.otherCost, 0)
     let SumTravelExpenseNotMilesOrMeals = (SumRoomCost + SumRoomTax + SumAirfare + SumRentalCar + SumOtherCost)
 
+    // Combines the sum of the federal-rate mileage expense with the cost of non-meal travel expenses, such as lodging and airfare.
     let SumMilesAndTravelExpenses = (SumStdMileRate + SumTravelExpenseNotMilesOrMeals)
+
+    // Combines all expenses to arrive at the grand total for line 10. This is the amount the user can deduct from their AGI.
 
     let GrandTotal = (SumMilesAndTravelExpenses + HalfSumMealCost)
 
+    //Console logs are to assist with app development.
     console.log(this.props.trips)
     console.log('Total Miles:', SumMiles)
     console.log('Total Local miles:', SumLocalMiles)
@@ -39,6 +52,9 @@ export default class TripForm extends Component {
     console.log('Total Other cost:', SumOtherCost)
 
     return (
+
+      // The table below is intended to appear to the user as a near-replica of IRS Form 2106. The user will see the relevant amounts from their logged trip data for the year on the pertinent lines of the Form 2106 replica.
+
       <React.Fragment>
         <Header as='h3'>
           Trip Expense Summary for 2019

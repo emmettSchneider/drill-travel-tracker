@@ -1,8 +1,12 @@
+// This module allows the user to create a trip. The intent is to make the inital creation of a trip simple. To meet that intent, the user is only asked for the trip start and end date, destination ZIP Code and one-way distance traveled in a POV to the trip destination. All other expenses related to the newly-created trip are set to a default value of 0. Once the trip is created, the user can patch the values of other trip expenses from the trip dashboard.
+
 import React, { Component } from 'react'
 import { Button, Form } from 'semantic-ui-react'
 import { DatesRangeInput } from 'semantic-ui-calendar-react'
 
 export default class TripForm extends Component {
+
+  // datesRange, zipCode and tripMiles are the only states required in this module. The datesRange state is parsed to make a tripStart and tripEnd date when the trip is created in the addNewTrip function.
 
   state = {
     datesRange: '',
@@ -22,7 +26,7 @@ export default class TripForm extends Component {
     }
   }
 
-
+  // addNewTrip uses the POST method to add a new trip to the database. Many of the trip key/value pairs are set to a default value of 0 to make initial creation of a trip simpler since a traveler often doesn't know all trip expenses at the start of a trip.
 
   addNewTrip = () => {
     let currentUser = Number(sessionStorage.getItem("userId"))
@@ -45,12 +49,17 @@ export default class TripForm extends Component {
 
     console.log(trip);
 
+    // addTrip function from ApplicationViews.js posts the trip, fetches the user's trips, and moves the user back to the trip dashboard.
+
     this.props.addTrip(trip).then(() => this.props.history.push('/trips'));
   }
 
   render() {
     return (
       <React.Fragment>
+
+        {/* The form below collects the user's trip start and end date, trip destination ZIP Code, and one-way distance traveled in a POV to the trip destination; sets this information to state, and calls the addTrip function when the "Save trip" button is clicked. **ADD CLARIFYING INFORMATION FOR TRIP MILES**. **ADD CANCEL BUTTON** The "Cancel" button moves the user back to the trip dashboard without making any changes. Style is from Semantic UI login example */}
+
         <Form>
           <Form.Field>
             <label>Trip start and end</label>

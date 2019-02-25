@@ -1,14 +1,18 @@
+// This module allows the user to add the cost of a hotel room and the hotel room tax to a trip. The module also uses the previously entered trip ZIP Code to query the GSA's per diem API and return the per diem hotel room rate limit for the user's trip destination ZIP Code.
+
 import React, { Component } from 'react'
-import { Grid, Form, Header, Segment, Image, Button, Table} from 'semantic-ui-react'
+import { Grid, Form, Header, Segment, Image, Button, Table } from 'semantic-ui-react'
 import bed from "./bed-placeholder.png"
 import DataManager from "../../modules/DataManager"
 
 export default class TripLodging extends Component {
 
+  // roomCost and roomTax are the only states required in this module
+
+
   state = {
     roomCost: '',
-    roomTax: '',
-    tripRate: {}
+    roomTax: ''
   }
 
 
@@ -24,8 +28,9 @@ export default class TripLodging extends Component {
     }
   }
 
+  // patchTrip uses the PATCH method to add roomCost and roomTax to an existing trip
+
   patchTrip = () => {
-    // let currentUser = Number(sessionStorage.getItem("userId"))
 
     const lodging = {
       roomCost: Number(this.state.roomCost),
@@ -36,6 +41,8 @@ export default class TripLodging extends Component {
 
     console.log(lodging);
 
+    // updateTrip function from ApplicationViews.js patches the trip, fetches the user's trips, and moves the user back to the trip dashboard.
+
     this.props.updateTrip(id, lodging)
     this.props.history.push('/trips')
   }
@@ -43,12 +50,14 @@ export default class TripLodging extends Component {
   render() {
     console.log(this.props)
 
-    DataManager.getOneTrip(this.props.match.params.tripId)
-    .then(r => DataManager.getRates(r.tripYear, r.zipCode))
-    .then(r => {
-      let tripRate = r.result.records[0]
-      console.log(tripRate)
-    })
+    // Providing the user with a visual per diem reference is still in progress. The API fetch works, now I need to display the relevant data in the cells of the table.
+
+    let perDiemLodging = DataManager.getOneTrip(this.props.match.params.tripId)
+      .then(r => DataManager.getRates(r.tripYear, r.zipCode))
+      .then(r => {
+        let tripRate = r.result.records[0]
+        console.log(tripRate)
+      })
 
 
     // DataManager.getOneTrip(this.props.match.params.tripId)
@@ -62,11 +71,9 @@ export default class TripLodging extends Component {
 
       <React.Fragment>
         <div className='lodging-form'>
-          {/*
-    Heads up! The styles below are necessary for the correct render of this example.
-    You can do same with CSS, the main idea is that all the elements up to the `Grid`
-    below must have a height of 100%.
-  */}
+
+          {/* The form below collects the user's room cost and room tax input, sets it to state, and calls the patchTrip function when the "Add cost of lodging" button is clicked. The "Cancel" button moves the user back to the trip dashboard without making any changes. Style is from Semantic UI login example */}
+
           <style>{`
     body > div,
     body > div > div,
