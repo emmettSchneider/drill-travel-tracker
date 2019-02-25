@@ -12,7 +12,8 @@ export default class TripLodging extends Component {
 
   state = {
     roomCost: '',
-    roomTax: ''
+    roomTax: '',
+    tripRate: {}
   }
 
 
@@ -26,6 +27,15 @@ export default class TripLodging extends Component {
     if (this.state.hasOwnProperty(name)) {
       this.setState({ [name]: value });
     }
+  }
+
+  perDiemLodgingRates = () => {
+    DataManager.getOneTrip(this.props.match.params.tripId)
+      .then(r => DataManager.getRates(r.tripYear, r.zipCode))
+      .then(r => {
+        let tripRate = r.result.records[0]
+        this.setState({ tripRate: tripRate })
+      })
   }
 
   // patchTrip uses the PATCH method to add roomCost and roomTax to an existing trip
@@ -47,17 +57,18 @@ export default class TripLodging extends Component {
     this.props.history.push('/trips')
   }
 
+  componentDidMount() {
+    this.perDiemLodgingRates()
+  }
+
   render() {
     console.log(this.props)
 
     // Providing the user with a visual per diem reference is still in progress. The API fetch works, now I need to display the relevant data in the cells of the table.
 
-    let perDiemLodging = DataManager.getOneTrip(this.props.match.params.tripId)
-      .then(r => DataManager.getRates(r.tripYear, r.zipCode))
-      .then(r => {
-        let tripRate = r.result.records[0]
-        console.log(tripRate)
-      })
+
+
+
 
 
     // DataManager.getOneTrip(this.props.match.params.tripId)
@@ -86,36 +97,7 @@ export default class TripLodging extends Component {
               <Header as='h2' color='teal' textAlign='left'>
                 <Image src={bed} /> Add cost of lodging to this trip
       </Header>
-              <Table celled>
-                <Table.Header>
-                  <Table.Row>
-                    <Table.HeaderCell>Zip Code</Table.HeaderCell>
-                    <Table.HeaderCell>Zip will go here</Table.HeaderCell>
-                  </Table.Row>
-                </Table.Header>
-                <Table.Body>
-                  <Table.Row>
-                    <Table.Cell>ZIP Code</Table.Cell>
-                    <Table.Cell>Cell</Table.Cell>
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell>City</Table.Cell>
-                    <Table.Cell>Cell</Table.Cell>
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell>State</Table.Cell>
-                    <Table.Cell>Cell</Table.Cell>
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell>State</Table.Cell>
-                    <Table.Cell>Cell</Table.Cell>
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell>State</Table.Cell>
-                    <Table.Cell>Cell</Table.Cell>
-                  </Table.Row>
-                </Table.Body>
-              </Table>
+
               <Form size='large' >
                 <Segment stacked>
                   <Form.Input
@@ -126,14 +108,14 @@ export default class TripLodging extends Component {
                     icon='bed'
                     iconPosition='left'
                   />
-                  <Form.Input
+                  {/* <Form.Input
                     placeholder='Room cost (excluding taxes)'
                     id='roomCost'
                     onChange={this.handleFieldChange}
                     type='number'
                     icon='bed'
                     iconPosition='left'
-                  />
+                  /> */}
                   <Form.Input
                     placeholder='Room taxes &amp; fees'
                     id='roomTax'
@@ -155,6 +137,38 @@ export default class TripLodging extends Component {
                     Cancel</Button>
                 </Segment>
               </Form>
+
+              <Table celled>
+                {console.log(this.state.tripRate)}
+                <Table.Header>
+                  <Table.Row>
+                    <Table.HeaderCell>Zip Code</Table.HeaderCell>
+                    <Table.HeaderCell>{this.state.tripRate.Zip}</Table.HeaderCell>
+                  </Table.Row>
+                </Table.Header>
+                <Table.Body>
+                  <Table.Row>
+                    <Table.Cell>City</Table.Cell>
+                    <Table.Cell>{this.state.tripRate.City}</Table.Cell>
+                  </Table.Row>
+                  <Table.Row>
+                    <Table.Cell>State</Table.Cell>
+                    <Table.Cell>{this.state.tripRate.State}</Table.Cell>
+                  </Table.Row>
+                  <Table.Row>
+                    <Table.Cell>State</Table.Cell>
+                    <Table.Cell>Cell</Table.Cell>
+                  </Table.Row>
+                  <Table.Row>
+                    <Table.Cell>State</Table.Cell>
+                    <Table.Cell>Cell</Table.Cell>
+                  </Table.Row>
+                  <Table.Row>
+                    <Table.Cell>State</Table.Cell>
+                    <Table.Cell>Cell</Table.Cell>
+                  </Table.Row>
+                </Table.Body>
+              </Table>
 
             </Grid.Column>
           </Grid>

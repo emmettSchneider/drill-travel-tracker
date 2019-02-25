@@ -16,6 +16,10 @@ export default {
       //   console.log(tripRate)
       // })
   },
+  getDailyMealRates(id) {
+    return fetch(`${jsonHost}/mealRates/${id}`)
+      .then(r => r.json())
+  },
   getAllUsers() {
     return fetch(`${jsonHost}/users`)
       .then(r => r.json())

@@ -134,15 +134,17 @@ export default class TripForm extends Component {
               <Table.HeaderCell></Table.HeaderCell>
             </Table.Row>
           </Table.Header>
-          <Table.Row>
-            <Table.Cell>
-              <Label ribbon >7</Label>
-              Enter reimbursements received from your employer that weren't reported to you in box 1 of Form W-2. Include any reimbursements reported under code “L” in box 12 of your Form W-2
+          <Table.Body>
+            <Table.Row>
+              <Table.Cell>
+                <Label ribbon >7</Label>
+                Enter reimbursements received from your employer that weren't reported to you in box 1 of Form W-2. Include any reimbursements reported under code “L” in box 12 of your Form W-2
             </Table.Cell>
-            <Table.Cell textAlign='center'>7</Table.Cell>
-            <Table.Cell textAlign='right'>0</Table.Cell>
-            <Table.Cell textAlign='right'>0</Table.Cell>
-          </Table.Row>
+              <Table.Cell textAlign='center'>7</Table.Cell>
+              <Table.Cell textAlign='right'>0</Table.Cell>
+              <Table.Cell textAlign='right'>0</Table.Cell>
+            </Table.Row>
+          </Table.Body>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell>Step 3 Figure Expenses To Deduct</Table.HeaderCell>
@@ -151,37 +153,39 @@ export default class TripForm extends Component {
               <Table.HeaderCell></Table.HeaderCell>
             </Table.Row>
           </Table.Header>
-          <Table.Row>
-            <Table.Cell>
-              <Label ribbon>8</Label>
-              Subtract line 7 from line 6. If zero or less, enter -0-. However, if line 7 is greater than line 6 in Column A, report the excess as income on Form 1040, line 1
+          <Table.Body>
+            <Table.Row>
+              <Table.Cell>
+                <Label ribbon>8</Label>
+                Subtract line 7 from line 6. If zero or less, enter -0-. However, if line 7 is greater than line 6 in Column A, report the excess as income on Form 1040, line 1
               <br></br>
-              Note: If both columns of line 8 are zero, you can't deduct employee business expenses. Stop here and attach Form 2106 to your return.
+                Note: If both columns of line 8 are zero, you can't deduct employee business expenses. Stop here and attach Form 2106 to your return.
             </Table.Cell>
-            <Table.Cell textAlign='center'>8</Table.Cell>
-            <Table.Cell textAlign='right'>{SumMilesAndTravelExpenses}</Table.Cell>
-            <Table.Cell textAlign='right'>{SumMealCost}</Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>
-              <Label ribbon>9</Label>
-              In Column A, enter the amount from line 8. In Column B, multiply line 8 by 50% &#40;0.50&#41;
+              <Table.Cell textAlign='center'>8</Table.Cell>
+              <Table.Cell textAlign='right'>{SumMilesAndTravelExpenses}</Table.Cell>
+              <Table.Cell textAlign='right'>{SumMealCost}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>
+                <Label ribbon>9</Label>
+                In Column A, enter the amount from line 8. In Column B, multiply line 8 by 50% &#40;0.50&#41;
             </Table.Cell>
-            <Table.Cell textAlign='center'>9</Table.Cell>
-            <Table.Cell textAlign='right'>{SumMilesAndTravelExpenses}</Table.Cell>
-            <Table.Cell textAlign='right'>{HalfSumMealCost}</Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>
-              <Label ribbon>10</Label>
-              Add the amounts on line 9 of both columns and enter the total here. Also, enter the total on Schedule 1 &#40;Form 1040&#41;, line 24 &#40;or Form 1040NR, line 34&#41;.
+              <Table.Cell textAlign='center'>9</Table.Cell>
+              <Table.Cell textAlign='right'>{SumMilesAndTravelExpenses}</Table.Cell>
+              <Table.Cell textAlign='right'>{HalfSumMealCost}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>
+                <Label ribbon>10</Label>
+                Add the amounts on line 9 of both columns and enter the total here. Also, enter the total on Schedule 1 &#40;Form 1040&#41;, line 24 &#40;or Form 1040NR, line 34&#41;.
               <br></br>
-              Employees with impairment-related work expenses, see the instructions for rules on where to enter the total on your return
+                Employees with impairment-related work expenses, see the instructions for rules on where to enter the total on your return
             </Table.Cell>
-            <Table.Cell textAlign='center'>10</Table.Cell>
-            <Table.Cell bgcolor='grey'></Table.Cell>
-            <Table.Cell textAlign='right'>{GrandTotal}</Table.Cell>
-          </Table.Row>
+              <Table.Cell textAlign='center'>10</Table.Cell>
+              <Table.Cell bgcolor='grey'></Table.Cell>
+              <Table.Cell textAlign='right'>{GrandTotal}</Table.Cell>
+            </Table.Row>
+          </Table.Body>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell>Part II Vehicle Expenses</Table.HeaderCell>
@@ -196,23 +200,25 @@ export default class TripForm extends Component {
               <Table.HeaderCell></Table.HeaderCell>
             </Table.Row>
           </Table.Header>
-          <Table.Row>
-            <Table.Cell>
-              <Label ribbon>12</Label>Total miles the vehicle was driven during 2018
+          <Table.Body>
+            <Table.Row>
+              <Table.Cell>
+                <Label ribbon>12</Label>Total miles the vehicle was driven during 2018
             </Table.Cell>
-            <Table.Cell textAlign='center'>12</Table.Cell>
-            <Table.Cell bgcolor='yellow'>ENTER MILES FROM <br></br>
-              YOUR RECORDS</Table.Cell>
-            <Table.Cell bgcolor='grey'></Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>
-              <Label ribbon>13</Label>Business miles included on line 12
+              <Table.Cell textAlign='center'>12</Table.Cell>
+              <Table.Cell bgcolor='yellow'>ENTER MILES FROM <br></br>
+                YOUR RECORDS</Table.Cell>
+              <Table.Cell bgcolor='grey'></Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>
+                <Label ribbon>13</Label>Business miles included on line 12
             </Table.Cell>
-            <Table.Cell textAlign='center'>13</Table.Cell>
-            <Table.Cell textAlign='right'>{SumTotalMiles}</Table.Cell>
-            <Table.Cell bgcolor='grey'></Table.Cell>
-          </Table.Row>
+              <Table.Cell textAlign='center'>13</Table.Cell>
+              <Table.Cell textAlign='right'>{SumTotalMiles}</Table.Cell>
+              <Table.Cell bgcolor='grey'></Table.Cell>
+            </Table.Row>
+          </Table.Body>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell>Section B—Standard Mileage Rates</Table.HeaderCell>
@@ -221,15 +227,16 @@ export default class TripForm extends Component {
               <Table.HeaderCell></Table.HeaderCell>
             </Table.Row>
           </Table.Header>
-          <Table.Row>
-            <Table.Cell>
-              <Label ribbon>22</Label>Multiply line 13 by 54.5¢ &#40;0.545&#41;. Enter the result here and on line 1
+          <Table.Body>
+            <Table.Row>
+              <Table.Cell>
+                <Label ribbon>22</Label>Multiply line 13 by 54.5¢ &#40;0.545&#41;. Enter the result here and on line 1
             </Table.Cell>
-            <Table.Cell textAlign='center'>22</Table.Cell>
-            <Table.Cell textAlign='right'>{SumStdMileRate}</Table.Cell>
-            <Table.Cell bgcolor='grey'></Table.Cell>
-          </Table.Row>
-
+              <Table.Cell textAlign='center'>22</Table.Cell>
+              <Table.Cell textAlign='right'>{SumStdMileRate}</Table.Cell>
+              <Table.Cell bgcolor='grey'></Table.Cell>
+            </Table.Row>
+          </Table.Body>
 
 
           <Table.Footer>
