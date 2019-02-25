@@ -13,7 +13,9 @@ export default class TripLodging extends Component {
   state = {
     roomCost: '',
     roomTax: '',
-    tripRate: {}
+    trip: {},
+    tripRate: {},
+    month: ''
   }
 
 
@@ -28,6 +30,24 @@ export default class TripLodging extends Component {
       this.setState({ [name]: value });
     }
   }
+
+  currentTrip = () => {
+    DataManager.getOneTrip(this.props.match.params.tripId)
+      .then(r =>
+        this.setState({ trip: r }))
+  }
+
+  // tripMonth = () => {
+  //   let months = ["Zero", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+  //   console.log(this.state.trip)
+  //   if (this.state.trip !== undefined) {
+  //     console.log(this.state.trip)
+  //     let month = this.state.trip.tripStart.slice(3, 5)
+  //     console.log(month)
+  //     // this.setState({ month: month })
+  //   }
+  // }
+
 
   perDiemLodgingRates = () => {
     DataManager.getOneTrip(this.props.match.params.tripId)
@@ -58,11 +78,14 @@ export default class TripLodging extends Component {
   }
 
   componentDidMount() {
+    this.currentTrip()
+    // this.tripMonth()
     this.perDiemLodgingRates()
   }
 
   render() {
-    console.log(this.props)
+    console.log(this.state.trip)
+
 
     // Providing the user with a visual per diem reference is still in progress. The API fetch works, now I need to display the relevant data in the cells of the table.
 
@@ -93,7 +116,7 @@ export default class TripLodging extends Component {
     }
   `}</style>
           <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
-            <Grid.Column style={{ maxWidth: 450 }}>
+            <Grid.Column style={{ maxWidth: 650 }}>
               <Header as='h2' color='teal' textAlign='left'>
                 <Image src={bed} /> Add cost of lodging to this trip
       </Header>
@@ -142,30 +165,40 @@ export default class TripLodging extends Component {
                 {console.log(this.state.tripRate)}
                 <Table.Header>
                   <Table.Row>
-                    <Table.HeaderCell>Zip Code</Table.HeaderCell>
-                    <Table.HeaderCell>{this.state.tripRate.Zip}</Table.HeaderCell>
+                    <Table.HeaderCell colSpan='4'>Trip destination per diem room cost limit by month.
+                    <br></br>
+                    Room cost limit excludes taxes, which are an additional and separate travel expense.
+                    </Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>
+
                 <Table.Body>
                   <Table.Row>
-                    <Table.Cell>City</Table.Cell>
-                    <Table.Cell>{this.state.tripRate.City}</Table.Cell>
+                    <Table.Cell colSpan='4'>
+                    <strong>Location:</strong> {this.state.tripRate.LocationDefined}
+                    <br></br>
+                    <strong>State:</strong> {this.state.tripRate.State}
+                    <br></br>
+                    <strong>ZipCode:</strong> {this.state.tripRate.Zip}
+                    </Table.Cell>
                   </Table.Row>
                   <Table.Row>
-                    <Table.Cell>State</Table.Cell>
-                    <Table.Cell>{this.state.tripRate.State}</Table.Cell>
+                    <Table.Cell>Jan: ${this.state.tripRate.Jan}</Table.Cell>
+                    <Table.Cell>Feb: ${this.state.tripRate.Feb}</Table.Cell>
+                    <Table.Cell>Mar: ${this.state.tripRate.Mar}</Table.Cell>
+                    <Table.Cell>Apr: ${this.state.tripRate.Apr}</Table.Cell>
                   </Table.Row>
                   <Table.Row>
-                    <Table.Cell>State</Table.Cell>
-                    <Table.Cell>Cell</Table.Cell>
+                    <Table.Cell>May: ${this.state.tripRate.May}</Table.Cell>
+                    <Table.Cell>Jun: ${this.state.tripRate.Jun}</Table.Cell>
+                    <Table.Cell>Jul: ${this.state.tripRate.Jul}</Table.Cell>
+                    <Table.Cell>Aug: ${this.state.tripRate.Aug}</Table.Cell>
                   </Table.Row>
                   <Table.Row>
-                    <Table.Cell>State</Table.Cell>
-                    <Table.Cell>Cell</Table.Cell>
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell>State</Table.Cell>
-                    <Table.Cell>Cell</Table.Cell>
+                    <Table.Cell>Sep: ${this.state.tripRate.Sep}</Table.Cell>
+                    <Table.Cell>Oct: ${this.state.tripRate.Oct}</Table.Cell>
+                    <Table.Cell>Nov: ${this.state.tripRate.Nov}</Table.Cell>
+                    <Table.Cell>Dec: ${this.state.tripRate.Dec}</Table.Cell>
                   </Table.Row>
                 </Table.Body>
               </Table>
