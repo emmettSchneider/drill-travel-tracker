@@ -56,7 +56,10 @@ class Registration extends Component {
     `}</style>
         <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as='h2' color='teal' textAlign='center'>
+          <Header as='h1' color='brown'>Drill Travel Tracker</Header>
+            <br></br>
+            <br></br>
+            <Header as='h2' color='brown' textAlign='center'>
               <Image src={jeep} /> Register a new account
         </Header>
             <Form size='large'
@@ -107,7 +110,7 @@ class Registration extends Component {
                 <Button type="submit"
                   onClick={() => this.addNewUser()}
                   // Redirect to="/login"
-                  color='teal'
+                  color='brown'
                   fluid size='large'>
                   Register account
             </Button>

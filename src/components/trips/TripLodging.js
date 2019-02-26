@@ -117,7 +117,10 @@ export default class TripLodging extends Component {
   `}</style>
           <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
             <Grid.Column style={{ maxWidth: 650 }}>
-              <Header as='h2' color='teal' textAlign='left'>
+            <br></br>
+            <br></br>
+
+              <Header as='h2' color='brown' textAlign='left'>
                 <Image src={bed} /> Add cost of lodging to this trip
       </Header>
 
@@ -148,7 +151,7 @@ export default class TripLodging extends Component {
                     iconPosition='left'
                   />
                   <Button type='submit'
-                    color='teal'
+                    color='brown'
                     fluid size='large'
                     onClick={() => this.patchTrip()}
                   >Add cost of lodging</Button>
@@ -165,9 +168,9 @@ export default class TripLodging extends Component {
                 {console.log(this.state.tripRate)}
                 <Table.Header>
                   <Table.Row>
-                    <Table.HeaderCell colSpan='4'>Trip destination per diem room cost limit by month.
+                    <Table.HeaderCell colSpan='4'>TRIP DESTINATION ROOM COST LIMIT BY MONTH.
                     <br></br>
-                    Room cost limit excludes taxes, which are an additional and separate travel expense.
+                    Room cost excludes taxes, which are an additional and separate travel expense.
                     </Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>
@@ -175,6 +178,8 @@ export default class TripLodging extends Component {
                 <Table.Body>
                   <Table.Row>
                     <Table.Cell colSpan='4'>
+                    <strong>Trip dates (DD/MM/YYYY):</strong> {this.state.trip.tripStart} to {this.state.trip.tripEnd}
+                    <br></br>
                     <strong>Location:</strong> {this.state.tripRate.LocationDefined}
                     <br></br>
                     <strong>State:</strong> {this.state.tripRate.State}

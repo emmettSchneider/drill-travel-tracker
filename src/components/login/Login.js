@@ -62,7 +62,10 @@ export default class Login extends Component {
     `}</style>
         <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as='h2' color='teal' textAlign='center'>
+            <Header as='h1' color='brown'>Drill Travel Tracker</Header>
+            <br></br>
+            <br></br>
+            <Header as='h2' color='brown' textAlign='center'>
               <Image src={jeep} /> Log in to your account
         </Header>
             <Form size='large'
@@ -88,7 +91,7 @@ export default class Login extends Component {
                 />
 
                 <Button type="submit"
-                  color='teal'
+                  color='brown'
                   fluid size='large'>
                   Log in
             </Button>

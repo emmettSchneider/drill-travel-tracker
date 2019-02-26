@@ -82,8 +82,10 @@ export default class TripMeals extends Component {
   `}</style>
           <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
             <Grid.Column style={{ maxWidth: 450 }}>
+            <br></br>
+            <br></br>
 
-              <Header as='h2' color='teal' textAlign='left'>
+              <Header as='h2' color='brown' textAlign='left'>
                 <Image src={meal} /> Add meals &amp; incidental expenses &#40;M&amp;IE&#41; to this trip
             </Header>
               <Form size='large' >
@@ -97,7 +99,7 @@ export default class TripMeals extends Component {
                     iconPosition='left'
                   />
                   <Button type='submit'
-                    color='teal'
+                    color='brown'
                     fluid size='large'
                     onClick={() => this.patchTrip()}
                   >Add M&amp;IE</Button><br></br>

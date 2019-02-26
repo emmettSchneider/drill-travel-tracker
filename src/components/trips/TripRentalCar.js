@@ -52,7 +52,7 @@ export default class TripRentalCar extends Component {
   `}</style>
         <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as='h2' color='teal' textAlign='left'>
+            <Header as='h2' color='brown' textAlign='left'>
               <Image src={car} /> Add rental car cost to this trip
       </Header>
             <Form size='large' >
@@ -66,7 +66,7 @@ export default class TripRentalCar extends Component {
                   iconPosition='left'
                 />
                 <Button type='submit'
-                  color='teal'
+                  color='brown'
                   fluid size='large'
                   onClick={() => this.patchTrip()}
                 >Add cost of rental car</Button><br></br>

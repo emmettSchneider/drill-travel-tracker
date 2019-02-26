@@ -1,8 +1,9 @@
 // This module allows the user to create a trip. The intent is to make the inital creation of a trip simple. To meet that intent, the user is only asked for the trip start and end date, destination ZIP Code and one-way distance traveled in a POV to the trip destination. All other expenses related to the newly-created trip are set to a default value of 0. Once the trip is created, the user can patch the values of other trip expenses from the trip dashboard.
 
 import React, { Component } from 'react'
-import { Button, Form } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Segment, Image } from 'semantic-ui-react'
 import { DatesRangeInput } from 'semantic-ui-calendar-react'
+import trip from "./trip-placeholder.png"
 
 export default class TripForm extends Component {
 
@@ -57,44 +58,65 @@ export default class TripForm extends Component {
   render() {
     return (
       <React.Fragment>
+        <div className='trip-form'>
 
-        {/* The form below collects the user's trip start and end date, trip destination ZIP Code, and one-way distance traveled in a POV to the trip destination; sets this information to state, and calls the addTrip function when the "Save trip" button is clicked. **ADD CLARIFYING INFORMATION FOR TRIP MILES**. **ADD CANCEL BUTTON** The "Cancel" button moves the user back to the trip dashboard without making any changes. Style is from Semantic UI login example */}
+          {/* The form below collects the user's trip start and end date, trip destination ZIP Code, and one-way distance traveled in a POV to the trip destination; sets this information to state, and calls the addTrip function when the "Save trip" button is clicked. **ADD CLARIFYING INFORMATION FOR TRIP MILES**. **ADD CANCEL BUTTON** The "Cancel" button moves the user back to the trip dashboard without making any changes. Style is from Semantic UI login example */}
 
-        <Form>
-          <Form.Field>
-            <label>Trip start and end</label>
-            <DatesRangeInput
-              name="datesRange"
-              placeholder="From - To"
-              value={this.state.datesRange}
-              iconPosition="left"
-              onChange={this.handleChange}
-              required
-            />
-          </Form.Field>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
+            <Grid.Column style={{ maxWidth: 450 }}>
+              <Header as='h2' color='brown' textAlign='left'>
+                <Image src={trip} /> Add new trip
+              </Header>
 
-          <Form.Field>
-            <label>Destination ZIP Code</label>
-            <input placeholder='ZIP Code'
-              id='zipCode'
-              onChange={this.handleFieldChange}
-              type='number'
-              required
-            />
-          </Form.Field>
-          <Form.Field>
-            <label>Distance from home to destination</label>
-            <input placeholder='One-way distance (miles)'
-              id='tripMiles'
-              onChange={this.handleFieldChange}
-              type='number'
-            />
-          </Form.Field>
-          <Button type='submit'
-            onClick={() => this.addNewTrip()}
-          >Save trip</Button>
-        </Form>
+              <Form>
+                <Segment stacked>
+                  <Form.Field>
+                    <DatesRangeInput
+                      name="datesRange"
+                      placeholder="Trip start and end"
+                      value={this.state.datesRange}
+                      iconPosition="left"
+                      onChange={this.handleChange}
+                      required
+                    />
+                  </Form.Field>
 
+                  <Form.Input
+                    placeholder='Destination ZIP Code'
+                    id='zipCode'
+                    onChange={this.handleFieldChange}
+                    type='number'
+                    icon='map marker'
+                    iconPosition='left'
+                    required
+                  />
+                  <Form.Input
+                    placeholder='One-way distance traveled via POV (miles)'
+                    id='tripMiles'
+                    onChange={this.handleFieldChange}
+                    type='number'
+                    icon='road'
+                    iconPosition='left'
+                  />
+                <Button type='submit' color='brown' fluid size='large'
+                  onClick={() => this.addNewTrip()}
+                >Save trip</Button>
+                <br></br>
+                <Button
+                  color='grey'
+                  fluid size='large'
+                  onClick={() => this.props.history.push('/trips')}>
+                  Cancel</Button>
+                </Segment>
+              </Form>
+            </Grid.Column>
+          </Grid>
+        </div>
       </React.Fragment >
     )
   }

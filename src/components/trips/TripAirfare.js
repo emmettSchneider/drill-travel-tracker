@@ -58,7 +58,7 @@ export default class TripAirfare extends Component {
   `}</style>
         <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as='h2' color='teal' textAlign='left'>
+            <Header as='h2' color='brown' textAlign='left'>
               <Image src={airplane} /> Add airfare to this trip
       </Header>
             <Form size='large' >
@@ -72,7 +72,7 @@ export default class TripAirfare extends Component {
                   iconPosition='left'
                 />
                 <Button type='submit'
-                  color='teal'
+                  color='brown'
                   fluid size='large'
                   onClick={() => this.patchTrip()}
                 >Add airfare</Button><br></br>
