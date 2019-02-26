@@ -77,7 +77,7 @@ export default class TripForm extends Component {
                 Vehicle expense from line 22 or line 29
             </Table.Cell>
               <Table.Cell textAlign='center'>1</Table.Cell>
-              <Table.Cell textAlign='right'>{SumStdMileRate}</Table.Cell>
+              <Table.Cell textAlign='right'>{Math.round(SumStdMileRate)}</Table.Cell>
               <Table.Cell bgcolor='grey'></Table.Cell>
             </Table.Row>
             <Table.Row>
@@ -95,7 +95,7 @@ export default class TripForm extends Component {
                 Travel expense while away from home overnight, including lodging, airplane, car rental, etc. Don't include meals
             </Table.Cell>
               <Table.Cell textAlign='center'>3</Table.Cell>
-              <Table.Cell textAlign='right'>{SumTravelExpenseNotMilesOrMeals}</Table.Cell>
+              <Table.Cell textAlign='right'>{Math.round(SumTravelExpenseNotMilesOrMeals)}</Table.Cell>
               <Table.Cell bgcolor='grey'></Table.Cell>
             </Table.Row>
             <Table.Row>
@@ -114,7 +114,7 @@ export default class TripForm extends Component {
             </Table.Cell>
               <Table.Cell textAlign='center'>5</Table.Cell>
               <Table.Cell bgcolor='grey'></Table.Cell>
-              <Table.Cell textAlign='right'>{SumMealCost}</Table.Cell>
+              <Table.Cell textAlign='right'>{Math.round(SumMealCost)}</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>
@@ -122,8 +122,8 @@ export default class TripForm extends Component {
                 Total expenses. In Column A, add lines 1 through 4 and enter the result. In Column B, enter the amount from line 5
             </Table.Cell>
               <Table.Cell textAlign='center'>6</Table.Cell>
-              <Table.Cell textAlign='right'>{SumMilesAndTravelExpenses}</Table.Cell>
-              <Table.Cell textAlign='right'>{SumMealCost}</Table.Cell>
+              <Table.Cell textAlign='right'>{Math.round(SumMilesAndTravelExpenses)}</Table.Cell>
+              <Table.Cell textAlign='right'>{Math.round(SumMealCost)}</Table.Cell>
             </Table.Row>
           </Table.Body>
           <Table.Header>
@@ -162,8 +162,8 @@ export default class TripForm extends Component {
                 Note: If both columns of line 8 are zero, you can't deduct employee business expenses. Stop here and attach Form 2106 to your return.
             </Table.Cell>
               <Table.Cell textAlign='center'>8</Table.Cell>
-              <Table.Cell textAlign='right'>{SumMilesAndTravelExpenses}</Table.Cell>
-              <Table.Cell textAlign='right'>{SumMealCost}</Table.Cell>
+              <Table.Cell textAlign='right'>{Math.round(SumMilesAndTravelExpenses)}</Table.Cell>
+              <Table.Cell textAlign='right'>{Math.round(SumMealCost)}</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>
@@ -171,8 +171,8 @@ export default class TripForm extends Component {
                 In Column A, enter the amount from line 8. In Column B, multiply line 8 by 50% &#40;0.50&#41;
             </Table.Cell>
               <Table.Cell textAlign='center'>9</Table.Cell>
-              <Table.Cell textAlign='right'>{SumMilesAndTravelExpenses}</Table.Cell>
-              <Table.Cell textAlign='right'>{HalfSumMealCost}</Table.Cell>
+              <Table.Cell textAlign='right'>{Math.round(SumMilesAndTravelExpenses)}</Table.Cell>
+              <Table.Cell textAlign='right'>{Math.round(HalfSumMealCost)}</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>
@@ -183,7 +183,7 @@ export default class TripForm extends Component {
             </Table.Cell>
               <Table.Cell textAlign='center'>10</Table.Cell>
               <Table.Cell bgcolor='grey'></Table.Cell>
-              <Table.Cell textAlign='right'>{GrandTotal}</Table.Cell>
+              <Table.Cell textAlign='right'>{Math.round(GrandTotal)}</Table.Cell>
             </Table.Row>
           </Table.Body>
           <Table.Header>
@@ -206,8 +206,7 @@ export default class TripForm extends Component {
                 <Label ribbon>12</Label>Total miles the vehicle was driven during 2018
             </Table.Cell>
               <Table.Cell textAlign='center'>12</Table.Cell>
-              <Table.Cell bgcolor='yellow'>ENTER MILES FROM <br></br>
-                YOUR RECORDS</Table.Cell>
+              <Table.Cell></Table.Cell>
               <Table.Cell bgcolor='grey'></Table.Cell>
             </Table.Row>
             <Table.Row>
@@ -215,7 +214,7 @@ export default class TripForm extends Component {
                 <Label ribbon>13</Label>Business miles included on line 12
             </Table.Cell>
               <Table.Cell textAlign='center'>13</Table.Cell>
-              <Table.Cell textAlign='right'>{SumTotalMiles}</Table.Cell>
+              <Table.Cell textAlign='right'>{Math.round(SumTotalMiles)}</Table.Cell>
               <Table.Cell bgcolor='grey'></Table.Cell>
             </Table.Row>
           </Table.Body>
@@ -233,7 +232,7 @@ export default class TripForm extends Component {
                 <Label ribbon>22</Label>Multiply line 13 by 54.5¢ &#40;0.545&#41;. Enter the result here and on line 1
             </Table.Cell>
               <Table.Cell textAlign='center'>22</Table.Cell>
-              <Table.Cell textAlign='right'>{SumStdMileRate}</Table.Cell>
+              <Table.Cell textAlign='right'>{Math.round(SumStdMileRate)}</Table.Cell>
               <Table.Cell bgcolor='grey'></Table.Cell>
             </Table.Row>
           </Table.Body>

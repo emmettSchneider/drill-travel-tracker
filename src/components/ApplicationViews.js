@@ -10,6 +10,7 @@ import TripMeals from './trips/TripMeals'
 import TripAirfare from './trips/TripAirfare'
 import TripRentalCar from './trips/TripRentalCar';
 import TripSummary from './trips/TripSummary';
+import TripOtherCost from './trips/TripOtherCost';
 
 
 export default class ApplicationViews extends Component {
@@ -160,10 +161,18 @@ export default class ApplicationViews extends Component {
         />
 
         <Route
+          path="/trips/other_costs/:tripId(\d+)/"
+          render={props => {
+            return <TripOtherCost {...props}
+              updateTrip={this.updateTrip} />
+          }}
+        />
+
+        <Route
           exact path="/trips/summary" render={(props) => {
             return <TripSummary {...props}
-            trips={this.state.trips}
-            userTrips={this.userTrips} />
+              trips={this.state.trips}
+              userTrips={this.userTrips} />
           }}
         />
 

@@ -33,9 +33,12 @@ height: 100%;
                       <Card.Meta><strong>{`${trip.tripStart} to ${trip.tripEnd}`}</strong></Card.Meta>
                       <p>Destination ZIP Code: {trip.zipCode} <br></br>
                         Miles round-trip: {trip.tripMiles}<br></br>
+                        Airfare: {trip.airfare}<br></br>
+                        Rental car cost: {trip.rentalCar}<br></br>
                         Meals &amp; incidental expenses: {trip.mealCost} <br></br>
                         Lodging cost: {trip.roomCost} <br></br>
-                        Lodging tax: {trip.roomTax}</p>
+                        Lodging tax: {trip.roomTax} <br></br>
+                        Other costs: {trip.otherCost}</p>
                       <Button.Group widths='3' color='grey'>
                         <Button animated='vertical'
                           onClick={() => {
@@ -77,15 +80,18 @@ height: 100%;
                           onClick={() => {
                             console.log("rental car button clicked!")
                             this.props.history.push(`/trips/rental_car/${trip.id}`)
-                          }}
-                        >
+                          }}>
                           <Button.Content visible>
                             <Icon name='car' />
                           </Button.Content>
                           <Button.Content hidden>Add rental car
                     </Button.Content>
                         </Button>
-                        <Button animated='vertical'>
+                        <Button animated='vertical'
+                          onClick={() => {
+                            console.log("other travel costs button clicked!")
+                            this.props.history.push(`/trips/other_costs/${trip.id}`)
+                          }}>
                           <Button.Content visible>
                             <Icon name='suitcase' />
                           </Button.Content>
