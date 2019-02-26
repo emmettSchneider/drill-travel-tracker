@@ -9,7 +9,7 @@ export default class TripList extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className='meals-form'>
+        <div className='trip-list'>
 
           {/* The form below collects the user's meal cost and room tax input, sets it to state, and calls the patchTrip function when the "Add M&IE" button is clicked. The "Cancel" button moves the user back to the trip dashboard without making any changes. Style is from Semantic UI login example */}
 

@@ -5,9 +5,11 @@ import { Header } from 'semantic-ui-react'
 
 
 class NavBar extends Component {
-  // signOut = () => {
-  //   this.props.history.replace('/');
-  // };
+
+  handleLogout = () => {
+    sessionStorage.clear()
+    console.log("Log out button pressed")
+  }
 
   render() {
     return (
@@ -24,11 +26,14 @@ class NavBar extends Component {
             <Link className="nav-link" to="/trips/summary">View Trip Expense Summary</Link>
           </li>
           <li className="nav-item">
+            <Link className="nav-link" to="/" onClick={() => this.handleLogout()}>Log out</Link>
+          </li>
+          {/* <li className="nav-item">
             <Link className="nav-link" to="/about">About</Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link" to="/faq">FAQ</Link>
-          </li>
+          </li> */}
         </ul>
       </nav>
     )
