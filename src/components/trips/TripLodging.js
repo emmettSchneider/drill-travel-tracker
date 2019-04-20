@@ -184,7 +184,7 @@ export default class TripLodging extends Component {
                     <br></br>
                     <strong>State:</strong> {this.state.tripRate.State}
                     <br></br>
-                    <strong>ZipCode:</strong> {this.state.tripRate.Zip}
+                    <strong>ZIP Code:</strong> {this.state.tripRate.Zip}
                     </Table.Cell>
                   </Table.Row>
                   <Table.Row>
