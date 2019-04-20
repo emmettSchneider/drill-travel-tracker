@@ -2,21 +2,28 @@ import React, { Component } from "react";
 import NavBar from "./nav/NavBar";
 import ApplicationViews from "./ApplicationViews";
 import "./Dtt.css";
-import DataManager from "../modules/DataManager";
 
 class Dtt extends Component {
+
+  isAuthenticated = () => sessionStorage.getItem("userId") !== null
+
+
   render() {
-    return (
-      <React.Fragment>
-        <NavBar />
-        <ApplicationViews />
-      </React.Fragment>
-    );
+    if (this.isAuthenticated()) {
+      return (
+        <React.Fragment>
+          <NavBar />
+          <ApplicationViews />
+        </React.Fragment>
+      )
+    } else {
+      return (
+        <React.Fragment>
+          <ApplicationViews />
+        </React.Fragment>
+      )
+    }
   }
 }
-
-DataManager.getRates();
-DataManager.getAllTrips();
-DataManager.getUserTrips(1);
 
 export default Dtt;

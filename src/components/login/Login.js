@@ -1,16 +1,15 @@
 /* eslint-disable react/jsx-no-duplicate-props */
 import React, { Component } from "react";
-import { Redirect } from 'react-router-dom';
+// import { Route, withRouter } from 'react-router-dom'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import jeep from "./jeep-placeholder.png"
 import DataManager from "../../modules/DataManager"
 
-class Login extends Component {
+export default class Login extends Component {
 
   state = {
     email: '',
     password: '',
-    userId: ''
   }
 
   handleFieldChange = (e) => {
@@ -19,11 +18,9 @@ class Login extends Component {
     this.setState(stateToChange)
   }
 
+  handleLogin = (e) => {
+    e.preventDefault();
 
-
-  handleLogin = () => {
-    console.log(this.state.email)
-    console.log(this.state.password)
     DataManager.getAllUsers()
       .then(allUsers => {
         let usersProcessed = 1
@@ -31,17 +28,20 @@ class Login extends Component {
           if (this.state.email === user.email && this.state.password === user.password) {
             console.log(`${user.email} with user ID ${user.id} is the current user`)
             sessionStorage.setItem('userId', user.id)
-            let userId = {userId: (sessionStorage.getItem('userId'))}
+            let userId = { userId: (sessionStorage.getItem('userId')) }
             this.setState(userId)
-            this.props.history.push('/trips')
+            this.props.userTrips()
+              .then(() => this.props.history.push('/trips'))
+
           } else if (usersProcessed === allUsers.length) {
             alert("The email and password you entered does not match the information we have on file. If you're a new user, please register an account.")
+
           } else {
             usersProcessed++
           }
         })
       })
-    }
+  }
 
 
   render() {
@@ -62,7 +62,10 @@ class Login extends Component {
     `}</style>
         <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as='h2' color='teal' textAlign='center'>
+            <Header as='h1' color='brown'>Drill Travel Tracker</Header>
+            <br></br>
+            <br></br>
+            <Header as='h2' color='brown' textAlign='center'>
               <Image src={jeep} /> Log in to your account
         </Header>
             <Form size='large'
@@ -88,7 +91,7 @@ class Login extends Component {
                 />
 
                 <Button type="submit"
-                  color='teal'
+                  color='brown'
                   fluid size='large'>
                   Log in
             </Button>
@@ -103,5 +106,3 @@ class Login extends Component {
     )
   }
 }
-
-export default Login

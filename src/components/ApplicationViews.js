@@ -2,48 +2,91 @@ import { Route, Redirect } from 'react-router-dom';
 import React, { Component } from 'react';
 import DataManager from '../modules/DataManager'
 import Login from './login/Login'
-import Registration from "./registration/Registration"
+import RegisterUser from "./registration/RegisterUser"
 import TripList from './trips/TripList'
 import TripForm from './trips/TripForm'
+import TripLodging from './trips/TripLodging'
+import TripMeals from './trips/TripMeals'
+import TripAirfare from './trips/TripAirfare'
+import TripRentalCar from './trips/TripRentalCar';
+import TripSummary from './trips/TripSummary';
+import TripOtherCost from './trips/TripOtherCost';
 
 
 export default class ApplicationViews extends Component {
   state = {
-    trips: [],
-    userId: ''
+    trips: []
   };
 
   isAuthenticated = () => sessionStorage.getItem("userId") !== null
 
-  componentDidMount() {
-
-    DataManager.getAllTrips()
+  userTrips = () => {
+    return DataManager.getAllTrips()
       .then(trips => {
+        console.log(trips)
         this.setState({ trips: trips });
       })
   }
 
-
+  componentDidMount() {
+    DataManager.getAllTrips()
+      .then(trips => {
+        this.setState(
+          { trips: trips })
+      })
+  }
 
   addUser = (user) => DataManager.postUser(user)
     .then(() => DataManager.getAllTrips())
-    .then(trips => this.setState({
-      trips: trips
-    }))
+    .then(trips => this.setState(
+      { trips: trips })
+    )
 
   addTrip = (trip) => DataManager.postTrip(trip)
     .then(() => DataManager.getAllTrips())
-    .then(trips => this.setState({
-      trips: trips
-    })
+    .then(trips => this.setState(
+      { trips: trips })
     )
 
-  updateComponent = () => {
-    DataManager.getAllTrips()
-      .then(trips => {
-        this.setState({ trips: trips });
-      })
+  deleteTrip = id => {
+    console.log("Yes, deleteTrip is a function.")
+    DataManager.deleteTrip(id)
+      .then(() => DataManager.getAllTrips())
+      .then(trips => this.setState(
+        { trips: trips }))
   }
+
+  updateTrip = (id, trip) => {
+    console.log("Here goes nothing!")
+    DataManager.patchTrip(id, trip)
+      .then(() => DataManager.getAllTrips())
+      .then(trips => this.setState(
+        { trips: trips }))
+  }
+
+
+  // (id) => {
+  //   return fetch(`http://localhost:5002/trips/${id}`, {
+  //     method: "DELETE"
+  //   })
+  //     .then(r => r.json())
+  //     .then(() => DataManager.getAllTrips())
+  //     .then(trips =>
+  //       this.setState({
+  //         trips: trips
+  //       })
+  //     )
+  // }
+
+
+
+  // return DataManager.deleteThisTrip(id)
+  //   .then(() => DataManager.getAllTrips())
+  //   .then(trips => this.setState(
+  //     { trips: trips })
+  //   )
+  // }
+
 
   render() {
     return (
@@ -52,43 +95,84 @@ export default class ApplicationViews extends Component {
         <Route exact path="/" render={(props) => {
           if (this.isAuthenticated()) {
             return <Redirect to='/trips' />
-          } else {
-            return <Redirect to="/login" />
-          }
-        }} />
-
-        <Route path="/login" render={(props) => {
-          return <Login {...props} />
-        }} />
-
-        <Route path="/register" render={(props) => {
-          return <Registration {...props}
-            addUser={this.addUser} />
+          } else { return <Redirect to='/login' /> }
         }} />
 
         <Route exact path="/trips" render={(props) => {
-          return <TripList {...props}
-            trips={this.state.trips} />
+          if (this.isAuthenticated()) {
+            return <TripList {...props}
+              deleteTrip={this.deleteTrip}
+              trips={this.state.trips} />
+          } else { return <Redirect to='/login' /> }
         }} />
 
+        <Route path="/login" render={(props) => {
+          if (this.isAuthenticated()) {
+            return <Redirect to='/trips' />
+          } else {
+            return <Login to='/login' {...props}
+              userTrips={this.userTrips} />
+          }
+        }} />
+
+        <Route path="/register" render={(props) => {
+          return <RegisterUser {...props}
+            addUser={this.addUser} />
+        }} />
+
+
         <Route
-          path="/trips/add" render={(props) => {
+          exact path="/trips/add" render={(props) => {
             return <TripForm {...props}
               addTrip={this.addTrip} />
           }}
         />
 
         <Route
-          path="/trips/edit" render={props => {
-            return null
-            // Remove null and return the component which will show the messages
+          path="/trips/lodging/:tripId(\d+)/"
+          render={props => {
+            return <TripLodging {...props}
+              updateTrip={this.updateTrip} />
           }}
         />
 
         <Route
-          path="/summary" render={props => {
-            return null
-            // Remove null and return the component which will show the user's tasks
+          path="/trips/meals/:tripId(\d+)/"
+          render={props => {
+            return <TripMeals {...props}
+              updateTrip={this.updateTrip} />
+          }}
+        />
+
+        <Route
+          path="/trips/airfare/:tripId(\d+)/"
+          render={props => {
+            return <TripAirfare {...props}
+              updateTrip={this.updateTrip} />
+          }}
+        />
+
+        <Route
+          path="/trips/rental_car/:tripId(\d+)/"
+          render={props => {
+            return <TripRentalCar {...props}
+              updateTrip={this.updateTrip} />
+          }}
+        />
+
+        <Route
+          path="/trips/other_costs/:tripId(\d+)/"
+          render={props => {
+            return <TripOtherCost {...props}
+              updateTrip={this.updateTrip} />
+          }}
+        />
+
+        <Route
+          exact path="/trips/summary" render={(props) => {
+            return <TripSummary {...props}
+              trips={this.state.trips}
+              userTrips={this.userTrips} />
           }}
         />
 

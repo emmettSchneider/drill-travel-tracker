@@ -1,8 +1,7 @@
 /* eslint-disable react/jsx-no-duplicate-props */
 import React, { Component } from "react";
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Image, Segment } from 'semantic-ui-react'
 import jeep from "../login/jeep-placeholder.png"
-import DataManager from "../../modules/DataManager"
 
 class Registration extends Component {
 
@@ -39,14 +38,6 @@ class Registration extends Component {
   }
 
 
-
-  // this.props.DataManager.postUser(user).then(p => {
-  //   console.log(p)
-  //   this.props.history.push("/login")
-  //   window.location.reload();
-  // })
-
-
   render() {
 
     return (
@@ -65,7 +56,10 @@ class Registration extends Component {
     `}</style>
         <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as='h2' color='teal' textAlign='center'>
+          <Header as='h1' color='brown'>Drill Travel Tracker</Header>
+            <br></br>
+            <br></br>
+            <Header as='h2' color='brown' textAlign='center'>
               <Image src={jeep} /> Register a new account
         </Header>
             <Form size='large'
@@ -116,7 +110,7 @@ class Registration extends Component {
                 <Button type="submit"
                   onClick={() => this.addNewUser()}
                   // Redirect to="/login"
-                  color='teal'
+                  color='brown'
                   fluid size='large'>
                   Register account
             </Button>
