@@ -1,7 +1,9 @@
 import React, { Component } from "react"
 import { Link, withRouter } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
-import { Header } from 'semantic-ui-react'
+import "./NavBar.css"
+import { Header, Image } from 'semantic-ui-react'
+import dttLogo from "./DTT_logo.png"
 
 
 class NavBar extends Component {
@@ -13,31 +15,33 @@ class NavBar extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-light light-blue flex-md-nowrap p-0 shadow">
-      <Header as='h1' color='brown'>Drill Travel Tracker</Header>
-        <ul className="nav nav-pills nav-fill">
-          <li className="nav-item">
-            <Link className="nav-link" to="/trips">Trip dashboard</Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/trips/add">Add New Trip</Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/trips/summary">View Trip Expense Summary</Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/" onClick={() => this.handleLogout()}>Log out</Link>
-          </li>
-          {/* <li className="nav-item">
-            <Link className="nav-link" to="/about">About</Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/faq">FAQ</Link>
-          </li> */}
-        </ul>
+      <nav className="navbar navbar-expand-lg bg-logo-color static-top">
+        <div class="container">
+          <Link to="/trips">
+            <Image className="dtt-logo" src={dttLogo} alt="" />
+          </Link>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+              </li>
+              <li class="nav-item">
+                <Link className="nav-link" to="/trips/add"><p class="text-light">Add New Trip</p></Link>
+              </li>
+              <li class="nav-item">
+                <Link class="nav-link" to="/trips/summary"><p class="text-light">View Trip Expense Summary</p></Link>
+              </li>
+              <li class="nav-item">
+                <Link class="nav-link" to="/" onClick={() => this.handleLogout()}><p class="bg-text-color">Log out</p></Link>
+              </li>
+            </ul>
+          </div>
+        </div>
       </nav>
     )
   }
 }
 
-export default withRouter (NavBar)
+export default withRouter(NavBar)
